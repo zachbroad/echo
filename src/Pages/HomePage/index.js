@@ -3,7 +3,7 @@ import {spotifyApi} from "../../api";
 import Header from "../../Components/Header";
 import {TrackGrid} from "../../Components/TrackGrid";
 import {Col, Container, Row} from "react-bootstrap";
-import Player, {usePlayer} from "../../Components/Player";
+import Player from "../../Components/Player";
 
 function HomePageConnectSpotify() {
     return (
@@ -112,7 +112,6 @@ export default function HomePage() {
     return (
         <>
             <Header logOut={logOut} username={username}/>
-
                 <Container className="">
                     {token !== null && token !== "null" ?
                         <HomePageLoggedIn/> :
