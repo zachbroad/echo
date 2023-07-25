@@ -5,8 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0dce5ce3-018e-46b5-a975-04aea11cc1e9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Components/Player/styles.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/TrackSongList/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/UserCreatedDisplay/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/AlbumArtworkNode/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AlbumArtworkNode/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Header/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Player/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Player/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/TrackGrid/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TrackGrid/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/HomePage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/HomePage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +67,7 @@
       <recent name="$PROJECT_DIR$/src/App" />
     </key>
     <key name="es6.move.members.recent.items">
+      <recent name="$PROJECT_DIR$/src/Components/TrackSongList/index.js" />
       <recent name="$PROJECT_DIR$/src/Pages/HomePage/index.js" />
       <recent name="$PROJECT_DIR$/src/api.js" />
       <recent name="$PROJECT_DIR$/src/TrackGrid.js" />
@@ -69,7 +81,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1690292655589</updated>
-      <workItem from="1690292656572" duration="17477000" />
+      <workItem from="1690292656572" duration="19712000" />
     </task>
     <servers />
   </component>

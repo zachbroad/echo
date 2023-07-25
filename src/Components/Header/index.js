@@ -34,7 +34,8 @@ export default function Header({username, logOut}) {
         color: 'rgba(0, 0, 0, 0.1)', // Lighter color for reflection
         display: 'inline-block',
         marginLeft: '0.5rem',
-        margin: 0
+        margin: 0,
+        fontWeight: 900,
     };
 
     return (
@@ -42,7 +43,7 @@ export default function Header({username, logOut}) {
             <div className="container d-flex align-items-center">
                 <a className="navbar-brand" href="/">
                     <span style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                        <h1 style={{margin: 0}} className="font-weight-bold">ECHO</h1>
+                        <h1 style={{margin: 0, fontWeight: 900}} className="font-weight-bold">ECHO</h1>
                         <h1 style={reflectionStyle} className="font-weight-bold">ECHO</h1>
                     </span>
                 </a>

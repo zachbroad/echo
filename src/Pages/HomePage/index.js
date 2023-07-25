@@ -4,6 +4,7 @@ import Header from "../../Components/Header";
 import {TrackGrid} from "../../Components/TrackGrid";
 import {Col, Container, Row} from "react-bootstrap";
 import Player from "../../Components/Player";
+import UserCreatedDisplay from "../../Components/UserCreatedDisplay";
 
 function HomePageConnectSpotify() {
     return (
@@ -21,7 +22,7 @@ function HomePageLoggedIn() {
     return (
         <Row>
             <Col>
-                <TrackGrid/>
+                <UserCreatedDisplay/>
             </Col>
         </Row>
     )
@@ -118,7 +119,6 @@ export default function HomePage() {
                         <HomePageConnectSpotify/>
                     }
                 </Container>
-                <Player/>
         </>
     )
 }

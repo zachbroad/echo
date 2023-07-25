@@ -8,9 +8,13 @@ import React from "react";
 
 export default function App() {
     return (
-        <PlayerProvider>
-            <HomePage/>
-        </PlayerProvider>
+        <div className="app-wrapper d-flex flex-column" style={{height: '100vh'}}>
+            <PlayerProvider>
+                <div className="main-content">
+                    <HomePage/>
+                </div>
+            </PlayerProvider>
+        </div>
     )
 }
 

@@ -1,4 +1,5 @@
 import React, {useState, useRef, useEffect, createContext, useContext} from 'react';
+import './styles.scss';
 
 const PlayerContext = createContext();
 
@@ -30,12 +31,13 @@ export const PlayerProvider = ({children}) => {
 
     const setPlayerSong = (newSong) => {
         setSong(newSong);
+        setIsPlaying(true);
     };
 
     return (
         <PlayerContext.Provider value={{isPlaying, onPlay, onPause, setPlayerSong}}>
             {children}
-            {song && <Player song={song} isPlaying={isPlaying} onPlay={onPlay} onPause={onPause} audioRef={audioRef} />}
+            <Player song={song} isPlaying={isPlaying} onPlay={onPlay} onPause={onPause} audioRef={audioRef}/>
         </PlayerContext.Provider>
     );
 };
@@ -45,12 +47,30 @@ export const usePlayer = () => {
 };
 
 const Player = ({song, isPlaying, onPlay, onPause, audioRef}) => {
+
+    const getCurrentSongTitle = () => {
+        return song ? song.name : "no song";
+    }
+
+    const getCurrentSongArtist = () => {
+        return song ? song.name : "no song";
+    }
+
     return (
-        <div>
-            <audio ref={audioRef} src={song} />
-            {isPlaying
-                ? <button onClick={onPause}>Pause</button>
-                : <button onClick={onPlay}>Play</button>
+        <div className="player-container fixed-bottom">
+            <p><b>Now playing:</b> {getCurrentSongTitle()}</p>
+            {song &&
+                (
+                    <audio ref={audioRef} src={song.preview_url ?? ""}/>
+                )
+            }
+
+            {song &&
+                <>
+                    {song ? <button onClick={onPause}>Pause</button>
+                        : <button onClick={onPlay}>Play</button>
+                    }
+                </>
             }
         </div>
     );

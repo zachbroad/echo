@@ -87,7 +87,7 @@ export default function AlbumArtworkNode({track}) {
     });
 
     function play() {
-        setPlayerSong(track.preview_url);
+        setPlayerSong(track);
     }
 
     return (
