@@ -1,5 +1,5 @@
 import {Dropdown, DropdownButton} from "react-bootstrap";
-import {generateCodeChallenge, generateRandomString} from "./util";
+import {generateCodeChallenge, generateRandomString} from "../../util";
 
 export default function Header({username, logOut}) {
     // REDIRECT USER TO SPOTIFY

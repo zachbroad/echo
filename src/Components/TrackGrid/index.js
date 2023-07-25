@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import {spotifyApi} from "./api";
-import AlbumArtworkNode from "./AlbumArtworkNode";
+import {spotifyApi} from "../../api";
+import AlbumArtworkNode from "../AlbumArtworkNode";
 
 export function TrackGrid() {
     const [tracks, setTracks] = useState();

@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0dce5ce3-018e-46b5-a975-04aea11cc1e9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Pages/HomePage/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AlbumArtworkNode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AlbumArtworkNode/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Header/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TrackGrid.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TrackGrid/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,9 +56,14 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/old" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/util" />
+      <recent name="$PROJECT_DIR$/src/Pages" />
+      <recent name="$PROJECT_DIR$/src/Components" />
+      <recent name="$PROJECT_DIR$/src/App" />
     </key>
     <key name="es6.move.members.recent.items">
+      <recent name="$PROJECT_DIR$/src/Pages/HomePage/index.js" />
       <recent name="$PROJECT_DIR$/src/api.js" />
       <recent name="$PROJECT_DIR$/src/TrackGrid.js" />
     </key>
@@ -64,7 +76,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1690292655589</updated>
-      <workItem from="1690292656572" duration="14342000" />
+      <workItem from="1690292656572" duration="14709000" />
     </task>
     <servers />
   </component>
