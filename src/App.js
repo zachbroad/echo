@@ -1,151 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
 
-import {useEffect, useState} from "react";
-import SpotifyWebApi from "spotify-web-api-js";
+import React, {useEffect, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {Button, Col, Container, DropdownButton, Row, Dropdown} from "react-bootstrap";
-
-function doWeHaveToken(token) {
-    return (token !== "null" && token !== undefined)
-}
-
-function Header({username, logOut}) {
-
-    // REDIRECT USER TO SPOTIFY
-    async function redirectAndAuthWithSpotify() {
-        const clientId = process.env.REACT_APP_CLIENT_ID;
-        const redirectUri = 'http://127.0.0.1:3000';
-
-        let codeVerifier = generateRandomString(128);
-
-        await generateCodeChallenge(codeVerifier).then(codeChallenge => {
-            let state = generateRandomString(16);
-            let scope = 'user-read-private user-read-email user-library-read';
-
-            localStorage.setItem('code_verifier', codeVerifier);
-
-            let args = new URLSearchParams({
-                response_type: 'code',
-                client_id: clientId,
-                scope: scope,
-                redirect_uri: redirectUri,
-                state: state,
-                code_challenge_method: 'S256',
-                code_challenge: codeChallenge
-            });
-
-            window.location = 'https://accounts.spotify.com/authorize?' + args;
-        });
-    }
-
-
-    const reflectionStyle = {
-        transform: 'scaleX(-1)', // Flip horizontally
-        color: 'rgba(0, 0, 0, 0.1)', // Lighter color for reflection
-        display: 'inline-block',
-        marginLeft: '0.5rem',
-        margin: 0
-    };
-
-    return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="container d-flex align-items-center">
-                <a className="navbar-brand" href="/">
-                    <span style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-                        <h1 style={{margin: 0}} className="font-weight-bold">ECHO</h1>
-                        <h1 style={reflectionStyle} className="font-weight-bold">ECHO</h1>
-                    </span>
-                    <h6 style={{margin: 0, display: "inline-block"}}>MIRRORING YOUR MUSIC</h6>
-                </a>
-                <div className="ml-auto">
-                    {username ? (
-                        <DropdownButton variant="outline-secondary" id="dropdown-basic-button"
-                                        title={`Welcome, ${username}`}>
-                            <Dropdown.Item onClick={logOut}>Log out</Dropdown.Item>
-                        </DropdownButton>
-                    ) : (
-                        <DropdownButton variant="outline-secondary" id="dropdown-basic-button" title="Log in">
-                            <Dropdown.Item
-                                onClick={() => redirectAndAuthWithSpotify()}
-                            >
-                                Log in with Spotify
-                            </Dropdown.Item>
-                        </DropdownButton>
-                    )}
-                </div>
-            </div>
-        </nav>
-    );
-}
-
-function ShowSavedTracks() {
-    const [tracks, setTracks] = useState();
-
-    useEffect(() => {
-        if (localStorage.getItem("access_token") === "null") return;
-        console.dir(localStorage.getItem("access_token"))
-        console.dir('hi')
-
-        spotifyApi.setAccessToken(localStorage.getItem("access_token"))
-        var t = spotifyApi.getMySavedTracks(
-            {limit: 36,}
-        ).then((d) => {
-            setTracks(d.items);
-            console.dir(d.items)
-        })
-    }, [])
-
-    return (
-        <div>
-            {tracks ? (
-                <div style={{display: "grid", gridTemplateColumns: "repeat(6, 125px)"}}>
-                    {tracks.map((track, index) => (
-                        <img
-                            key={index}
-                            src={track.track.album.images[0].url}
-                            height={125}
-                            width={125}
-                            alt={track.track.name}
-                        />
-                    ))}
-                </div>
-            ) : (
-                <p>Loading tracks...</p>
-            )}
-        </div>
-
-    )
-}
-
-
-function generateRandomString(length) {
-    let text = '';
-    let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-    for (let i = 0; i < length; i++) {
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-    }
-    return text;
-}
-
-async function generateCodeChallenge(codeVerifier) {
-    function base64encode(string) {
-        return btoa(String.fromCharCode.apply(null, new Uint8Array(string)))
-            .replace(/\+/g, '-')
-            .replace(/\//g, '_')
-            .replace(/=+$/, '');
-    }
-
-    const encoder = new TextEncoder();
-    const data = encoder.encode(codeVerifier);
-    const digest = await window.crypto.subtle.digest('SHA-256', data);
-
-    return base64encode(digest);
-}
-
-const SPOTIFY_API_KEY_NAME = "SPOTIFY_API_KEY";
-let spotifyApi = new SpotifyWebApi();
+import {Col, Container, Row} from "react-bootstrap";
+import Header from "./Header";
+import {TrackGrid} from "./TrackGrid";
+import {spotifyApi} from "./api";
 
 function HomePageConnectSpotify() {
     return (
@@ -163,14 +23,13 @@ function HomePageLoggedIn() {
     return (
         <Row>
             <Col>
-                <ShowSavedTracks/>
+                <TrackGrid/>
             </Col>
         </Row>
     )
 }
 
 export default function HomePage() {
-
     const [token, setToken] = useState(localStorage.getItem("access_token"));
 
     const [username, setUsername] = useState(null);
@@ -192,9 +51,6 @@ export default function HomePage() {
                 console.error(e);
             });
     }
-
-    useEffect(() => {
-    }, [token]);
 
     useEffect(() => {
         getUsername()
@@ -257,6 +113,7 @@ export default function HomePage() {
     return (
         <>
             <Header logOut={logOut} username={username}/>
+
             <Container className="">
                 {token !== null && token !== "null" ?
                     <HomePageLoggedIn/> :
