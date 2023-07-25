@@ -92,7 +92,7 @@ export default function AlbumArtworkNode({track}) {
 
     return (
         <>
-            <div onClick={() => play()}>
+            <div onClick={() => play()} style={{cursor: "pointer"}}>
                 <div id={track.id}>
                     <img
                         src={albumArtwork}
