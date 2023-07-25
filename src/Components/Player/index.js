@@ -67,7 +67,7 @@ const Player = ({song, isPlaying, onPlay, onPause, audioRef}) => {
 
             {song &&
                 <>
-                    {song ? <button onClick={onPause}>Pause</button>
+                    {isPlaying ? <button onClick={onPause}>Pause</button>
                         : <button onClick={onPlay}>Play</button>
                     }
                 </>
