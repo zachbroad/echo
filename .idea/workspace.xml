@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0dce5ce3-018e-46b5-a975-04aea11cc1e9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/AlbumArtworkNode.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Header.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TrackGrid.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/util.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Header.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +64,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1690292655589</updated>
-      <workItem from="1690292656572" duration="14242000" />
+      <workItem from="1690292656572" duration="14342000" />
     </task>
     <servers />
   </component>

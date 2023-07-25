@@ -45,7 +45,6 @@ export default function Header({username, logOut}) {
                         <h1 style={{margin: 0}} className="font-weight-bold">ECHO</h1>
                         <h1 style={reflectionStyle} className="font-weight-bold">ECHO</h1>
                     </span>
-                    <h6 style={{margin: 0, display: "inline-block"}}>YOUR SPOTIFY. REFLECTED.</h6>
                 </a>
                 <div className="ml-auto">
                     {username ? (
