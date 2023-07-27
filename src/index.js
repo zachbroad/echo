@@ -26,10 +26,12 @@ const router = createBrowserRouter([
 root.render(
     <React.StrictMode>
         <AuthProvider>
-            <div className="app-wrapper d-flex flex-column" style={{height: '100vh'}}>
-                <PlayerProvider>
-                    <RouterProvider router={router}/>
-                </PlayerProvider>
+            <div className="main-content">
+                <div className="app-wrapper d-flex flex-column" style={{height: '100vh'}}>
+                    <PlayerProvider>
+                        <RouterProvider router={router}/>
+                    </PlayerProvider>
+                </div>
             </div>
         </AuthProvider>
     </React.StrictMode>

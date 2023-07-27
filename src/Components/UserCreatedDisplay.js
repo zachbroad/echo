@@ -3,6 +3,7 @@ import TrackSongList from "../Components/TrackSongList";
 import {useEffect, useState} from "react";
 import {spotifyApi} from "../api";
 import React from 'react';
+import {Col, Row} from "react-bootstrap";
 
 
 export default function UserCreatedDisplay({data}) {
@@ -25,8 +26,14 @@ export default function UserCreatedDisplay({data}) {
             {
                 tracks ? (
                     <div>
-                        <TrackGrid tracks={tracks}/>
-                        {/*<TrackSongList tracks={tracks}/>*/}
+                        <Row>
+                            <Col sm={12} md={8}>
+                                <TrackGrid tracks={tracks}/>
+                            </Col>
+                            <Col sm={12} md={4}>
+                                <TrackSongList tracks={tracks}/>
+                            </Col>
+                        </Row>
                     </div>
                 ) : (
                     <div>loading tracks</div>
