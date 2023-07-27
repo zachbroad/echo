@@ -4,15 +4,18 @@ import React from "react";
 import {Card, Col, Container, Row} from "react-bootstrap";
 import TrackGrid from "../Components/TrackGrid";
 import UserCreatedDisplay from "../Components/UserCreatedDisplay";
+import { useAuth } from '../Components/Auth';
 
 export default function UserDashboard() {
+    const {isLoggedIn, accessToken, logout, setAccessToken, username} = useAuth();
+
     return (
         <div>
             <Header/>
             <Container className={"mt-5"}>
                 <Row>
                     <Col sm="12" md={"8"}>
-                        <h1>@zachbroad's dashboard</h1>
+                        <h1>@{username}'s dashboard</h1>
                         <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto debitis deserunt
                             doloribus
                             est fuga incidunt quos sint tempore! Accusantium asperiores autem dolores esse et fuga

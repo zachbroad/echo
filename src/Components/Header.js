@@ -6,7 +6,7 @@ import {useAuth} from "./Auth";
 import {Link} from "react-router-dom";
 
 export default function Header() {
-    const {isLoggedIn, accessToken, logout, setAccessToken} = useAuth();
+    const {isLoggedIn, accessToken, logout, setAccessToken, username} = useAuth();
 
     // REDIRECT USER TO SPOTIFY
     async function redirectAndAuthWithSpotify() {
@@ -34,20 +34,6 @@ export default function Header() {
             window.location = 'https://accounts.spotify.com/authorize?' + args;
         });
     }
-
-    const [username, setUsername] = useState(null);
-
-    useEffect(() => {
-        if (!accessToken) return;
-        spotifyApi.setAccessToken(accessToken);
-        spotifyApi.getMe()
-            .then(d => {
-                setUsername(d.display_name);
-            })
-            .catch(e => {
-                console.error(e);
-            });
-    }, []);
 
     const reflectionStyle = {
         transform: 'scaleX(-1)', // Flip horizontally

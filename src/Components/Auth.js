@@ -37,6 +37,8 @@ export const AuthProvider = ({children}) => {
             let codeVerifier = localStorage.getItem('code_verifier');
 
             const clientId = process.env.REACT_APP_CLIENT_ID;
+            console.log("Client ID:", clientId);
+
             const redirectUri = 'http://127.0.0.1:3000';
 
             let bodyData = {
@@ -78,8 +80,22 @@ export const AuthProvider = ({children}) => {
 
     }, []); // Add router.query as a dependency to the useEffect hook
 
+    const [username, setUsername] = useState(null);
+
+    useEffect(() => {
+        if (!accessToken) return;
+        spotifyApi.setAccessToken(accessToken);
+        spotifyApi.getMe()
+            .then(d => {
+                setUsername(d.display_name);
+            })
+            .catch(e => {
+                console.error(e);
+            });
+    }, []);
+
     return (
-        <AuthContext.Provider value={{isLoggedIn, accessToken, logout, setAccessToken}}>
+        <AuthContext.Provider value={{isLoggedIn, accessToken, logout, setAccessToken, username}}>
             {children}
         </AuthContext.Provider>
     );
