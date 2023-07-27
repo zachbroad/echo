@@ -61,12 +61,12 @@ export default function Header() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container d-flex align-items-center">
-                <a className="navbar-brand" href="/">
+                <Link className="navbar-brand" to="/">
                     <span style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
                         <h1 style={{margin: 0, fontWeight: 900}} className="font-weight-bold">ECHO</h1>
                         <h1 style={reflectionStyle} className="font-weight-bold">ECHO</h1>
                     </span>
-                </a>
+                </Link>
                 <div className="ml-auto">
                     {isLoggedIn ? (
                         <DropdownButton variant="outline-secondary" id="dropdown-basic-button"
