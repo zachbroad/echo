@@ -1,7 +1,7 @@
-import TrackGrid from "../TrackGrid";
-import TrackSongList from "../TrackSongList";
+import TrackGrid from "../Components/TrackGrid";
+import TrackSongList from "../Components/TrackSongList";
 import {useEffect, useState} from "react";
-import {spotifyApi} from "../../api";
+import {spotifyApi} from "../api";
 import React from 'react';
 
 
@@ -26,7 +26,7 @@ export default function UserCreatedDisplay({data}) {
                 tracks ? (
                     <div>
                         <TrackGrid tracks={tracks}/>
-                        <TrackSongList tracks={tracks}/>
+                        {/*<TrackSongList tracks={tracks}/>*/}
                     </div>
                 ) : (
                     <div>loading tracks</div>

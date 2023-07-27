@@ -1,5 +1,5 @@
 import React, {useState, useRef, useEffect, createContext, useContext} from 'react';
-import './styles.scss';
+import './Player.scss';
 
 const PlayerContext = createContext();
 

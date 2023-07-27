@@ -1,0 +1,32 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+.track-grid {
+  display: grid;
+  width: 100%;
+  //justify-content: space-between;
+  //grid-gap: 10px; /* Optionally add gap between grid items */
+
+  grid-template-columns: repeat(2, 1fr);
+
+  @include media-breakpoint-up(xs) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include media-breakpoint-up(sm) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  @include media-breakpoint-up(md) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  @include media-breakpoint-up(xl) {
+    grid-template-columns: repeat(9, 1fr);
+  }
+}

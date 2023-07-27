@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
-import {spotifyApi} from "../../api";
-import AlbumArtworkNode from "../AlbumArtworkNode";
+import AlbumArtworkNode from "./AlbumArtworkNode";
+import './TrackGrid.scss';
 
 
 export default function TrackGrid({tracks}) {
     return (
         <div>
             {tracks ? (
-                <div style={{display: "grid", gridTemplateColumns: "repeat(6, 125px)"}}>
+                <div className="track-grid" style={{}}>
                     {tracks.map((track, index) => (
                         <AlbumArtworkNode track={track.track}/>
                     ))}

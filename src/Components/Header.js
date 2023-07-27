@@ -1,7 +1,13 @@
 import {Dropdown, DropdownButton} from "react-bootstrap";
-import {generateCodeChallenge, generateRandomString} from "../../util";
+import {generateCodeChallenge, generateRandomString} from "../util";
+import {spotifyApi} from "../api";
+import {useEffect, useState} from "react";
+import {useAuth} from "./Auth";
+import {Link} from "react-router-dom";
 
-export default function Header({username, logOut}) {
+export default function Header() {
+    const {isLoggedIn, accessToken, logout, setAccessToken} = useAuth();
+
     // REDIRECT USER TO SPOTIFY
     async function redirectAndAuthWithSpotify() {
         const clientId = process.env.REACT_APP_CLIENT_ID;
@@ -29,6 +35,20 @@ export default function Header({username, logOut}) {
         });
     }
 
+    const [username, setUsername] = useState(null);
+
+    useEffect(() => {
+        if (!accessToken) return;
+        spotifyApi.setAccessToken(accessToken);
+        spotifyApi.getMe()
+            .then(d => {
+                setUsername(d.display_name);
+            })
+            .catch(e => {
+                console.error(e);
+            });
+    }, []);
+
     const reflectionStyle = {
         transform: 'scaleX(-1)', // Flip horizontally
         color: 'rgba(0, 0, 0, 0.1)', // Lighter color for reflection
@@ -48,10 +68,15 @@ export default function Header({username, logOut}) {
                     </span>
                 </a>
                 <div className="ml-auto">
-                    {username ? (
+                    {isLoggedIn ? (
                         <DropdownButton variant="outline-secondary" id="dropdown-basic-button"
                                         title={`Welcome, ${username}`}>
-                            <Dropdown.Item onClick={logOut}>Log out</Dropdown.Item>
+                            <Dropdown.Item>
+                                <Link to={"/dashboard/"}>
+                                    My dashboard
+                                </Link>
+                            </Dropdown.Item>
+                            <Dropdown.Item onClick={() => logout()}>Log out</Dropdown.Item>
                         </DropdownButton>
                     ) : (
                         <DropdownButton variant="outline-secondary" id="dropdown-basic-button" title="Log in">

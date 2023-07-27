@@ -1,6 +1,7 @@
 import {useEffect} from "react";
 import {Tooltip as ReactTooltip} from "react-tooltip";
-import {usePlayer} from "../Player";
+import {usePlayer} from "./Player";
+import './AlbumArtworkNode.scss';
 
 /*
     "album": {
@@ -82,22 +83,17 @@ export default function AlbumArtworkNode({track}) {
     const albumArtwork = track.album.images[0].url;
     const {isPlaying, onPlay, onPause, setPlayerSong} = usePlayer();
 
-    useEffect(() => {
-        console.dir(track);
-    });
-
     function play() {
         setPlayerSong(track);
     }
 
     return (
         <>
-            <div onClick={() => play()} style={{cursor: "pointer"}}>
-                <div id={track.id}>
+            <div className="album-node" onClick={() => play()} style={{cursor: "pointer"}}>
                     <img
                         src={albumArtwork}
-                        height={125}
-                        width={125}
+                        // height={150}
+                        // width={150}
                         alt={track.name}
                     />
                     <ReactTooltip
@@ -109,7 +105,6 @@ export default function AlbumArtworkNode({track}) {
                     >
                         <b>{track.name}</b> by <i>{track.artists[0].name}</i>
                     </ReactTooltip>
-                </div>
             </div>
         </>
     )
