@@ -1,101 +1,87 @@
-import React, {createContext, useContext, useEffect, useRef, useState} from "react";
-import {spotifyApi} from "../api";
+import React, {createContext, useContext, useEffect, useState} from "react";
+import {API_CALLBACK, API_ME} from "../api";
 
 const AuthContext = createContext();
 
 
 export const AuthProvider = ({children}) => {
-    const [accessToken, setAccessToken] = useState(localStorage.getItem("access_token"));
-    const [isLoggedIn, setIsLoggedIn] = useState(!!accessToken);
+    const [token, setToken] = useState(localStorage.getItem("token"));
+    const [isLoggedIn, setIsLoggedIn] = useState(!!token);
+    const [profile, setProfile] = useState(JSON.parse(localStorage.getItem("profile")));
+    // const [profile, setProfile] = useState(localStorage.getItem("profile"));
 
     const logout = () => {
         setIsLoggedIn(false);
-        setAccessToken(null);
-        localStorage.removeItem("access_token");
+        setToken(null);
+        setProfile(null);
+        localStorage.removeItem("token");
+        localStorage.removeItem("profile");
     }
 
+    const getUserProfile = async (t) => {
+        try {
+            const response = await fetch(API_ME, {
+                headers: {
+                    "Authorization": `Token ${t}`
+                }
+            });
+            const data = await response.json();
 
-    useEffect(() => {
-        if (localStorage.getItem("access_token")) {
-            setAccessToken(localStorage.getItem("access_token"))
+            setProfile(data);
+            localStorage.setItem("profile", JSON.stringify(data));
+        } catch (e) {
+            console.error(e);
         }
-    }, []);
+    }
 
 
     // SPOTIFY CALLBACK
     useEffect(() => {
+        // TODO: return if logged in
+        // TODO: figure out why error & why it gets called twice
+
+
         // Check if on the client-side before using useRouter
         if (typeof window !== 'undefined') {
             // we hope this gets called on callback
+
             const queryParams = new URLSearchParams(window.location.search);
 
             const code = queryParams.get('code');
-            const state = queryParams.get('state');
+            // const state = queryParams.get('state');jjj
 
-            if (code == null || state == null) return;
+            if (code == null) return;
 
-            let codeVerifier = localStorage.getItem('code_verifier');
+            const CALLBACK_URL = new URL(API_CALLBACK);
+            CALLBACK_URL.searchParams.append("code", code);
+            const getToken = async () => {
+                try {
+                    const response = await fetch(CALLBACK_URL);
+                    if (!response.ok) throw new Error('HTTP status: ' + response.status)
 
-            const clientId = process.env.REACT_APP_CLIENT_ID;
-            console.log("Client ID:", clientId);
-
-            const redirectUri = 'http://127.0.0.1:3000';
-
-            let bodyData = {
-                grant_type: 'authorization_code',
-                code: code,
-                redirect_uri: redirectUri,
-                client_id: clientId,
-                code_verifier: codeVerifier
-            }
-            let body = new URLSearchParams(bodyData);
-
-            console.dir(bodyData)
-
-            fetch('https://accounts.spotify.com/api/token', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: body
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('HTTP status ' + response.status);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.dir(data);
-                    localStorage.setItem('access_token', data.access_token);
-                    setAccessToken(data.access_token);
+                    const data = await response.json();
+                    console.log(data.token)
+                    localStorage.setItem("token", data.token);
+                    await setToken(data.token);
+                    await getUserProfile(data.token);
                     setIsLoggedIn(true);
-                    console.log("GOT TOKEN: " + data.access_token)
-                    spotifyApi.setAccessToken(data.access_token);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+
+            getToken();
         }
 
     }, []); // Add router.query as a dependency to the useEffect hook
 
-    const [username, setUsername] = useState(null);
 
     useEffect(() => {
-        if (!accessToken) return;
-        spotifyApi.setAccessToken(accessToken);
-        spotifyApi.getMe()
-            .then(d => {
-                setUsername(d.display_name);
-            })
-            .catch(e => {
-                console.error(e);
-            });
+        console.dir(profile);
     }, []);
 
     return (
-        <AuthContext.Provider value={{isLoggedIn, accessToken, logout, setAccessToken, username}}>
+        <AuthContext.Provider value={{token, isLoggedIn, logout, profile}}>
             {children}
         </AuthContext.Provider>
     );

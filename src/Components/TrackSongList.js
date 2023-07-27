@@ -6,7 +6,6 @@ export default function TrackSongList({tracks}) {
         <div>
             {
                 tracks.map(data => {
-                    console.dir(data)
                     return (
                         <p>{data.track.name}</p>
                     )

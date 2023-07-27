@@ -1,24 +1,29 @@
 import TrackGrid from "../Components/TrackGrid";
 import TrackSongList from "../Components/TrackSongList";
 import {useEffect, useState} from "react";
-import {spotifyApi} from "../api";
 import React from 'react';
 import {Col, Row} from "react-bootstrap";
+import {useAuth} from "./Auth";
+import {API_TOP} from "../api";
 
 
 export default function UserCreatedDisplay({data}) {
     const [tracks, setTracks] = useState();
+    const {token} = useAuth();
 
     useEffect(() => {
-        if (localStorage.getItem("access_token") === "null") return;
-        spotifyApi.setAccessToken(localStorage.getItem("access_token"))
+        const getTracks = async () => {
+            const response = await fetch(API_TOP, {
+                headers: {
+                    "Authorization": "Token " + token,
+                }
+            });
+            const data = await response.json();
+            console.dir(data);
+            setTracks(data.items);
+        }
 
-        var t = spotifyApi.getMySavedTracks(
-            {limit: 36,}
-        ).then((d) => {
-            setTracks(d.items);
-            console.dir(d.items)
-        })
+        getTracks();
     }, [])
 
     return (

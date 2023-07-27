@@ -1,12 +1,11 @@
 import {Dropdown, DropdownButton} from "react-bootstrap";
 import {generateCodeChallenge, generateRandomString} from "../util";
-import {spotifyApi} from "../api";
-import {useEffect, useState} from "react";
+import {API_AUTH} from "../api";
 import {useAuth} from "./Auth";
 import {Link} from "react-router-dom";
 
 export default function Header() {
-    const {isLoggedIn, accessToken, logout, setAccessToken, username} = useAuth();
+    const {token, isLoggedIn, logout, profile} = useAuth();
 
     // REDIRECT USER TO SPOTIFY
     async function redirectAndAuthWithSpotify() {
@@ -30,9 +29,24 @@ export default function Header() {
                 code_challenge_method: 'S256',
                 code_challenge: codeChallenge
             });
-
-            window.location = 'https://accounts.spotify.com/authorize?' + args;
         });
+
+        let json_data = null;
+        await fetch(API_AUTH, {
+            method: "GET",
+            mode: "cors"
+        })
+            .then(response => {
+                console.dir(response)
+                return response.json()
+            })
+            .then(responseJson => {
+                console.dir(responseJson)
+                return json_data = responseJson;
+            })
+            .catch(e => console.error(e))
+
+        window.location = json_data.url;
     }
 
     const reflectionStyle = {
@@ -56,7 +70,7 @@ export default function Header() {
                 <div className="ml-auto">
                     {isLoggedIn ? (
                         <DropdownButton variant="outline-secondary" id="dropdown-basic-button"
-                                        title={`Welcome, ${username}`}>
+                                        title={`Welcome, ${profile.display_name}`}>
                             <Dropdown.Item>
                                 <Link to={"/dashboard/"}>
                                     My dashboard

@@ -1,8 +1,10 @@
-import SpotifyWebApi from "spotify-web-api-js";
+const BASE = "http://127.0.0.1:8000";
 
-export function doWeHaveToken(token) {
-    return (token !== "null" && token !== undefined)
-}
+// AUTH FLOW ENDPOINTS
+export const API_AUTH = BASE + "/spotify/auth/";
+export const API_CALLBACK = BASE + "/spotify/callback/";
 
-export const SPOTIFY_API_KEY_NAME = "SPOTIFY_API_KEY";
-export let spotifyApi = new SpotifyWebApi();
+// USER DATA ENDPOINTS
+export const API_ME = BASE + "/spotify/me/"; // profile
+export const API_TOP = BASE + "/spotify/top/"; // top songs
+

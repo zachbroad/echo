@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0dce5ce3-018e-46b5-a975-04aea11cc1e9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/variables.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/TrackGrid.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TrackGrid.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/TrackSongList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TrackSongList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/UserCreatedDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/UserCreatedDisplay.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/UserDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/UserDashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,9 +63,9 @@
       <recent name="$PROJECT_DIR$/src/App" />
     </key>
     <key name="es6.move.members.recent.items">
+      <recent name="$PROJECT_DIR$/src/api.js" />
       <recent name="$PROJECT_DIR$/src/Components/TrackSongList/index.js" />
       <recent name="$PROJECT_DIR$/src/Pages/HomePage/index.js" />
-      <recent name="$PROJECT_DIR$/src/api.js" />
       <recent name="$PROJECT_DIR$/src/TrackGrid.js" />
     </key>
   </component>
@@ -75,34 +79,12 @@
       <updated>1690292655589</updated>
       <workItem from="1690292656572" duration="24559000" />
       <workItem from="1690466845181" duration="5442000" />
+      <workItem from="1690476031063" duration="5229000" />
+      <workItem from="1690485785750" duration="1906000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/Components/Header.js</url>
-          <line>44</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/Components/Header.js</url>
-          <line>42</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/Components/Header.js</url>
-          <line>41</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
