@@ -1,10 +1,8 @@
 import TrackGrid from "../Components/TrackGrid";
 import TrackSongList from "../Components/TrackSongList";
-import {useEffect, useState} from "react";
 import React from 'react';
 import {Col, Row} from "react-bootstrap";
-import {useAuth} from "./Auth";
-import {API_RECENTLYSAVED} from "../api";
+import './TrackDisplayWithGridAndList.scss';
 
 
 export default function TrackDisplayWithGridAndList({data}) {
@@ -12,7 +10,7 @@ export default function TrackDisplayWithGridAndList({data}) {
         <>
             {
                 data ? (
-                    <div>
+                    <div className="track-display-container shadow-sm">
                         <Row>
                             <Col sm={12} md={8}>
                                 <TrackGrid tracks={data}/>

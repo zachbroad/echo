@@ -50,14 +50,12 @@ export default function UserDashboard() {
                     <Col sm="12" md={"8"}>
                         <div className="d-flex align-items-center mb-3">
                             <img className="rounded-circle me-2" src={profile.images[0].url}/>
-                            <h2 className="ml-3">@{profile.display_name}'s dashboard</h2>
+                            <div>
+                                <h2 className="ml-3 d-inline-flex align-content-center">@{profile.display_name}'s dashboard</h2>
+                                <br/>
+                                <small>{profile.followers.total} followers</small>
+                            </div>
                         </div>
-                        <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto debitis deserunt
-                            doloribus
-                            est fuga incidunt quos sint tempore! Accusantium asperiores autem dolores esse et fuga
-                            minima
-                            nisi praesentium quos sit!
-                        </small>
                     </Col>
                     <Col sm="12" md={"4"}>
                         <Card>
