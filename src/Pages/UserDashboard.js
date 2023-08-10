@@ -1,12 +1,47 @@
 import './UserDashboard.scss'
 import Header from "../Components/Header";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Card, Col, Container, Row} from "react-bootstrap";
-import UserCreatedDisplay from "../Components/UserCreatedDisplay";
+import TrackDisplayWithGridAndList from "../Components/TrackDisplayWithGridAndList";
 import {useAuth} from '../Components/Auth';
+import {API_RECENTLYSAVED, API_TOP} from "../api";
+import TrackGrid from "../Components/TrackGrid";
+import TrackSongList from "../Components/TrackSongList";
 
 export default function UserDashboard() {
     const {token, isLoggedIn, logout, profile} = useAuth();
+
+    /* TOP TRACKS */
+    const [topTracks, setTopTracks] = useState(null);
+    useEffect(() => {
+        const getTracks = async () => {
+            const response = await fetch(API_TOP, {
+                headers: {
+                    "Authorization": "Token " + token,
+                }
+            });
+            const data = await response.json();
+            setTopTracks(data.items);
+        }
+
+        getTracks();
+    }, [])
+
+    /* RECENT TRACKS */
+    const [recentTracks, setRecentRecentTracks] = useState(null);
+    useEffect(() => {
+        const getRecentTracks = async () => {
+            const response = await fetch(API_RECENTLYSAVED, {
+                headers: {
+                    "Authorization": "Token " + token,
+                }
+            });
+            const data = await response.json();
+            setRecentRecentTracks(data.tracks.items);
+        }
+
+        getRecentTracks();
+    }, [])
 
     const ViewWhenLoggedIn = () => (
         <div>
@@ -50,10 +85,17 @@ export default function UserDashboard() {
                     </Col>
                 </Row>
 
+                <Row>
+                    <Col sm={12}>
+                        <h2>All Time Top Tracks</h2>
+                        <TrackDisplayWithGridAndList data={topTracks}/>
+                    </Col>
+                </Row>
+
                 <Row className={"mt-3 "}>
                     <Col>
-                        <h1>Recently listening to...</h1>
-                        <UserCreatedDisplay/>
+                        <h2>Recently listening to...</h2>
+                        <TrackDisplayWithGridAndList data={recentTracks}/>
                     </Col>
                 </Row>
                 <Row>

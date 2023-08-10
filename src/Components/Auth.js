@@ -77,7 +77,6 @@ export const AuthProvider = ({children}) => {
 
 
     useEffect(() => {
-        console.dir(profile);
     }, []);
 
     return (

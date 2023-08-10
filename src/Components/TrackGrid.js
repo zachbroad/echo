@@ -8,9 +8,17 @@ export default function TrackGrid({tracks}) {
         <div>
             {tracks ? (
                 <div className="track-grid" style={{}}>
-                    {tracks.map((track, index) => (
-                        <AlbumArtworkNode track={track.track}/>
-                    ))}
+                    {tracks.map((track, index) => {
+                        if (track.track != null) {
+                            return (
+                                <AlbumArtworkNode track={track.track}/>
+                            );
+                        } else {
+                            return (
+                                <AlbumArtworkNode track={track}/>
+                            );
+                        }
+                    })}
                 </div>
             ) : (
                 <p>Loading tracks...</p>

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Header from "../Components/Header";
 import {Col, Container, Row} from "react-bootstrap";
-import UserCreatedDisplay from "../Components/UserCreatedDisplay";
+import TrackDisplayWithGridAndList from "../Components/TrackDisplayWithGridAndList";
 import {useAuth} from "../Components/Auth";
 
 function HomePageConnectSpotify() {
@@ -20,7 +20,7 @@ function HomePageLoggedIn() {
     return (
         <Row>
             <Col style={{padding: 0}}>
-                <UserCreatedDisplay/>
+                <TrackDisplayWithGridAndList/>
             </Col>
         </Row>
     )

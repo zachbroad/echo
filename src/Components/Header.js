@@ -37,11 +37,9 @@ export default function Header() {
             mode: "cors"
         })
             .then(response => {
-                console.dir(response)
                 return response.json()
             })
             .then(responseJson => {
-                console.dir(responseJson)
                 return json_data = responseJson;
             })
             .catch(e => console.error(e))
