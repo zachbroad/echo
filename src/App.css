@@ -1,23 +1,22 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;400;500;700;900&family=Karla:wght@400;500;700;800&display=swap');
 
 body {
-    font-family: 'Inconsolata', monospace;
-    font-weight: 400;
-    font-size: 18px;
-    /*display: flex;*/
+  font-family: 'Inconsolata', monospace;
+  font-weight: 400;
+  font-size: 18px;
+  /*display: flex;*/
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Karla', sans-serif;
-    font-weight: 700;
+  font-family: 'Karla', sans-serif;
+  font-weight: 700;
 }
 
 .app-wrapper {
-    position: relative; /* Ensure the wrapper is a positioning context for Player */
+  position: relative; /* Ensure the wrapper is a positioning context for Player */
 }
 
 .main-content {
-    /*flex: 1; !* Allow the main content to take up the available space *!*/
-    padding-bottom: 180px;
+  /*flex: 1; !* Allow the main content to take up the available space *!*/
+  padding-bottom: 180px;
 }

@@ -10,31 +10,49 @@ import {PlayerProvider} from "./Components/Player";
 import UserDashboard from "./Pages/UserDashboard";
 import {AuthProvider} from "./Components/Auth";
 
+// Toaster oven
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <HomePage/>
-    },
-    {
-        path: "/dashboard/",
-        element: <UserDashboard/>
-    }
+  {
+    path: "/",
+    element: <HomePage/>
+  },
+  {
+    path: "/dashboard/",
+    element: <UserDashboard/>
+  }
 ])
 
 root.render(
-    <React.StrictMode>
-        <AuthProvider>
-            <div className="main-content">
-                <div className="app-wrapper d-flex flex-column" style={{height: '100vh'}}>
-                    <PlayerProvider>
-                        <RouterProvider router={router}/>
-                    </PlayerProvider>
-                </div>
-            </div>
-        </AuthProvider>
-    </React.StrictMode>
+  <React.StrictMode>
+    <AuthProvider>
+      <div className="main-content">
+        <div className="app-wrapper d-flex flex-column" style={{height: '100vh'}}>
+          <PlayerProvider>
+            <RouterProvider router={router}/>
+          </PlayerProvider>
+        </div>
+      </div>
+      {/* Same as */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </AuthProvider>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
