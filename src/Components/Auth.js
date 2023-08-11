@@ -1,5 +1,6 @@
 import React, {createContext, useContext, useEffect, useState} from "react";
 import {API_CALLBACK, API_ME} from "../api";
+import {toast} from "react-toastify";
 
 const AuthContext = createContext();
 
@@ -62,10 +63,13 @@ export const AuthProvider = ({children}) => {
           const data = await response.json();
           console.log(data.token)
           localStorage.setItem("token", data.token);
+
           await setToken(data.token);
           await getUserProfile(data.token);
+
           setIsLoggedIn(true);
         } catch (e) {
+          toast("Error logging in! " + e);
           console.error(e);
         }
       }
