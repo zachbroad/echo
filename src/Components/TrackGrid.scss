@@ -5,10 +5,10 @@
 .track-grid {
   display: grid;
   width: 100%;
-  //justify-content: space-between;
-  //grid-gap: 10px; /* Optionally add gap between grid items */
+  // justify-content: space-between;
+  // grid-gap: 10px; /* Optionally add gap between grid items */
 
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr); // Default 4x4 layout
 
   @include media-breakpoint-up(xs) {
     grid-template-columns: repeat(4, 1fr);
@@ -28,5 +28,16 @@
 
   @include media-breakpoint-up(xl) {
     grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+.track-grid.smaller {
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+
+.track-grid.first-bigger {
+  .album-node:first-child {
+    grid-row: span 2; // Make the first item span 2 rows
+    grid-column: span 2; // Make the first item span 2 columns
   }
 }
