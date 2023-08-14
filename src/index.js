@@ -8,25 +8,119 @@ import {createBrowserRouter} from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import {PlayerProvider} from "./Components/Player";
 import UserDashboard from "./Pages/UserDashboard";
-import {AuthProvider} from "./Components/Auth";
+import {AuthProvider, useAuth} from "./Components/Auth";
 
 // Toaster oven
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import UserList from "./Pages/UserList";
+import UserDetail from "./Pages/UserDetail";
+import {API_ME, API_DASHBOARD, API_USERDETAIL, API_SETTINGS, API_USERS} from "./api";
+import UserSettings from "./Pages/UserSettings";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <HomePage/>
-  },
-  {
-    path: "/dashboard/",
-    element: <UserDashboard/>
-  }
-])
+function RoutesComponent() {
+  const {token, isLoggedIn, logout, profile} = useAuth();
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <HomePage/>
+    },
+    {
+      path: "/dashboard/",
+      element: <UserDashboard/>,
+      loader: async ({request, params}) => {
+        const dResponse = await fetch(API_DASHBOARD, {
+          headers: {
+            "Authorization": `Token ${token}`
+          }
+        });
+        const d = await dResponse.json();
+
+        const profileResponse = await fetch(API_ME, {
+          headers: {
+            "Authorization": `Token ${token}`
+          }
+        });
+        const userProfile = await profileResponse.json();
+
+        return {
+          "data": d,
+          "profile": userProfile
+        };
+      }
+    },
+    {
+      path: "/users/",
+      element: <UserList/>,
+      loader: async ({request, params}) => {
+        const response = await fetch(API_USERS, {
+            headers: {
+              "Authorization": `Token ${token}`
+            }
+          }
+        );
+        const jsonData = await response.json();
+
+        if (!response.ok) {
+          return [null, `${response.status} - ${response.statusText}`];
+        }
+
+        return [jsonData, null];
+      }
+    },
+    {
+      path: "/users/:username/",
+      element: <UserDetail/>,
+      loader: async ({request, params}) => {
+        const response = await fetch(API_USERDETAIL(params.username), {
+          headers: {
+            "Authorization": `Token ${token}`
+          }
+        });
+        const userDetailData = await response.json();
+
+        if (!response.ok) {
+          return [null, `${response.status} - ${response.statusText}`]
+        }
+
+        return [userDetailData, null];
+      }
+    },
+    {
+      path: "/settings/",
+      element: <UserSettings/>,
+      loader: async ({request, params}) => {
+        const response = await fetch(API_SETTINGS, {
+          headers: {
+            "Authorization": `Token ${token}`
+          }
+        });
+        const userSettingsData = await response.json();
+        return userSettingsData;
+      },
+
+      // action: async ({params, request}) => {
+      //   const response = await fetch(API_SETTINGS, {
+      //     headers: {
+      //       "Authorization": `Token ${token}`
+      //     },
+      //     method: "PUT",
+      //     body: request.formData()
+      //   });
+      //   const userSettingsData = await response.json();
+      //   return userSettingsData;
+      // }
+    },
+
+  ]);
+
+  return <RouterProvider router={router}/>;
+}
+
 
 root.render(
   <React.StrictMode>
@@ -34,7 +128,7 @@ root.render(
       <div className="main-content">
         <div className="app-wrapper d-flex flex-column" style={{height: '100vh'}}>
           <PlayerProvider>
-            <RouterProvider router={router}/>
+            <RoutesComponent/>
           </PlayerProvider>
         </div>
       </div>

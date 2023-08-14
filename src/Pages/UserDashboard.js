@@ -1,134 +1,14 @@
 import './UserDashboard.scss'
 import Header from "../Components/Header";
-import React, {useEffect, useState} from "react";
-import {Card, Col, Container, Row} from "react-bootstrap";
-import TrackDisplayWithGridAndList from "../Components/TrackDisplayWithGridAndList";
+import React from "react";
+import {Container} from "react-bootstrap";
 import {useAuth} from '../Components/Auth';
-import {API_RECENTLYSAVED, API_TOP} from "../api";
-import TrackGrid from "../Components/TrackGrid";
-import TrackSongList from "../Components/TrackSongList";
-import TrackDisplayGrid from "../Components/TrackDisplayGrid";
+import UserDashboardView from "../Components/UserDashboardView";
+import {useLoaderData} from "react-router";
 
 export default function UserDashboard() {
-  const {token, isLoggedIn, logout, profile} = useAuth();
-
-  /* TOP TRACKS */
-  const [topLongTracks, setTopLongTracks] = useState(null);
-  const [topMedTracks, setTopMedTracks] = useState(null);
-  const [topShortTracks, setTopShortTracks] = useState(null);
-  const [recentTracks, setRecentTracks] = useState(null);
-
-  useEffect(() => {
-    const getDashboardViewData = async () => {
-      const response = await fetch(API_TOP, {
-        headers: {
-          "Authorization": "Token " + token,
-        }
-      });
-      const data = await response.json();
-      console.dir(data)
-      setTopLongTracks(data.tracks_long.items);
-      setTopMedTracks(data.tracks_med.items);
-      setTopShortTracks(data.tracks_short.items);
-      setRecentTracks(data.recents.items)
-    }
-
-    getDashboardViewData();
-  }, [])
-
-  // /* RECENT TRACKS */
-  // useEffect(() => {
-  //   const getRecentTracks = async () => {
-  //     const response = await fetch(API_RECENTLYSAVED, {
-  //       headers: {
-  //         "Authorization": "Token " + token,
-  //       }
-  //     });
-  //     const data = await response.json();
-  //     setRecentTracks(data.tracks.items);
-  //   }
-  //
-  //   getRecentTracks();
-  // }, [])
-
-  const ViewWhenLoggedIn = () => (
-    <div>
-      <Container className={"mt-4"}>
-        <Row>
-          <Col sm="12" md={"8"}>
-            <div className="d-flex align-items-center mb-3">
-              <img className="rounded-circle me-2" src={profile.images[0].url}/>
-              <div>
-                <h2 className="ml-3 d-inline-flex align-content-center">@{profile.display_name}'s dashboard</h2>
-                <br/>
-                <small>{profile.followers.total} followers</small>
-              </div>
-            </div>
-          </Col>
-          <Col sm="12" md={"4"}>
-            {/*<Card>*/}
-            {/*  <Card.Header>*/}
-            {/*    <Card.Title>At a glance</Card.Title>*/}
-            {/*  </Card.Header>*/}
-            {/*  <Card.Body>*/}
-            {/*                    <span>*/}
-            {/*                        <b>Favorite artist:</b> DAN-JPEG*/}
-            {/*                    </span>*/}
-            {/*    <br/>*/}
-            {/*    <span>*/}
-            {/*                        <b>Songs liked:</b> 1805*/}
-            {/*                    </span>*/}
-            {/*    <br/>*/}
-            {/*    <span>*/}
-            {/*                        <b>Top genre:</b> Electronic*/}
-            {/*                    </span>*/}
-            {/*    <br/>*/}
-            {/*    <span>*/}
-            {/*                        <b>Recent mood:</b> Happy 😊*/}
-            {/*                    </span>*/}
-            {/*  </Card.Body>*/}
-            {/*</Card>*/}
-          </Col>
-        </Row>
-
-        <hr/>
-
-        <Row>
-          <Col sm={12} md={4}>
-            <h2>All Time Top Tracks</h2>
-            <TrackDisplayGrid data={topLongTracks} limit={16}/>
-          </Col>
-          <Col sm={12} md={4}>
-            <h2>Past year favorites</h2>
-            <TrackDisplayGrid data={topMedTracks} limit={16}/>
-          </Col>
-          <Col sm={12} md={4}>
-            <h2>Past month favorites</h2>
-            <TrackDisplayGrid data={topShortTracks} limit={16}/>
-          </Col>
-        </Row>
-
-        <Row className={"mt-3 "}>
-          <Col>
-            <h2>Recently listening to...</h2>
-            <TrackDisplayWithGridAndList data={recentTracks}/>
-          </Col>
-        </Row>
-        {/*<Row>*/}
-        {/*  <Col>*/}
-        {/*    <h3>Top </h3>*/}
-        {/*  </Col>*/}
-        {/*  <Col>*/}
-
-        {/*  </Col>*/}
-        {/*  <Col>*/}
-
-        {/*  </Col>*/}
-        {/*</Row>*/}
-
-      </Container>
-    </div>
-  );
+  const {token, isLoggedIn, logout, myProfile} = useAuth();
+  const {data, profile} = useLoaderData();
 
   const ViewWhenUnauth = () => (
     <div>
@@ -143,7 +23,7 @@ export default function UserDashboard() {
   return (
     <div>
       <Header/>
-      {!isLoggedIn ? <ViewWhenUnauth/> : <ViewWhenLoggedIn/>}
+      {!isLoggedIn ? <ViewWhenUnauth/> : <UserDashboardView data={data}/>}
     </div>
   )
 }

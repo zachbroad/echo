@@ -27,7 +27,7 @@ function HomePageLoggedIn() {
 }
 
 export default function HomePage() {
-  const {isLoggedIn, accessToken, logout, setAccessToken} = useAuth();
+  const {token, isLoggedIn, logout, profile} = useAuth();
 
   return (
     <>

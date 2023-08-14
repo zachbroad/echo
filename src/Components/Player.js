@@ -63,11 +63,28 @@ export const usePlayer = () => {
 const Player = ({song, isPlaying, onPlay, onPause, audioRef}) => {
 
   const getCurrentSongTitle = () => {
-    return song ? song.name : "no song";
+    if (song) {
+      return <a className="songname" href={song.external_urls.spotify} target="_blank">{song.name}</a>;
+    }
+
+    return <p className="songname">no song</p>;
+  }
+
+  const getCurrentSongAlbum = () => {
+    if (song) {
+      return <a href={song.album.external_urls.spotify} target="_blank">{song.album.name}</a>;
+    }
+
+    return "no album";
   }
 
   const getCurrentSongArtist = () => {
-    return song ? song.artists[0].name : "no artist";
+    if (song) {
+      return <a href={song.artists[0].external_urls.spotify} target="_blank">{song.artists[0].name}</a>
+      return song.artists[0].name;
+    } else {
+      return "no artist";
+    }
   }
 
   const getAlbumImageSrc = () => {
@@ -77,14 +94,16 @@ const Player = ({song, isPlaying, onPlay, onPause, audioRef}) => {
   return (
     <div className="player-container fixed-bottom">
       {song && (
-        <audio ref={audioRef} src={song.preview_url ?? ""}/>
+        <audio loop ref={audioRef} src={song.preview_url ?? ""}/>
       )}
 
       <div className="player-left">
         <img src={getAlbumImageSrc()}/>
         <div>
           {/*<p><b>Now playing:</b> {getCurrentSongTitle()}</p>*/}
-          <p><b>{getCurrentSongTitle()}</b></p>
+          {getCurrentSongTitle()}
+          {/*<br/>*/}
+          {/*{getCurrentSongAlbum()}*/}
           <p>{getCurrentSongArtist()}</p>
         </div>
       </div>

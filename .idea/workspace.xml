@@ -5,18 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0dce5ce3-018e-46b5-a975-04aea11cc1e9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Components/TopArtistsDisplay.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/TrackDisplayGrid.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/Loading.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/UserDashboardView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/UserDetail.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/UserList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/UserSettings.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/AlbumArtworkNode.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/AlbumArtworkNode.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/TrackDisplayWithGridAndList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TrackDisplayWithGridAndList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/TrackDisplayWithGridAndList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TrackDisplay.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/TrackGrid.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TrackGrid.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Player.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Player.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Player.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/TrackGrid.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TrackGrid.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/TrackSongList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TrackSongList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/HomePage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Pages/UserDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/UserDashboard.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,29 +44,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/zach/Downloads/Double Black Transportation _ Jackson Hole Transportation.html",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.maddyhome.idea.vim.ui.VimEmulationConfigurable",
-    "ts.external.directory.path": "/opt/webstorm/plugins/javascript-impl/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/zach/WebstormProjects/echo/src/Pages&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.folding&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/opt/webstorm/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "HTML"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;HTML&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Pages" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Pages" />
       <recent name="$PROJECT_DIR$/src/Components" />
@@ -94,7 +100,8 @@
       <workItem from="1691678104134" duration="1873000" />
       <workItem from="1691679984189" duration="1626000" />
       <workItem from="1691692664791" duration="9966000" />
-      <workItem from="1691788007213" duration="6214000" />
+      <workItem from="1691788007213" duration="22533000" />
+      <workItem from="1692041761361" duration="2394000" />
     </task>
     <servers />
   </component>

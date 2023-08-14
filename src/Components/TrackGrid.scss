@@ -35,6 +35,10 @@
   grid-template-columns: repeat(4, 1fr) !important;
 }
 
+.track-grid.smallest {
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+
 .track-grid.first-bigger {
   .album-node:first-child {
     grid-row: span 2; // Make the first item span 2 rows
