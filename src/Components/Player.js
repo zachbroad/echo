@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect, createContext, useContext} from 'react';
+import React, {useState, useRef, useEffect, createContext, useContext, useInsertionEffect} from 'react';
 import './Player.scss';
 import {toast} from 'react-toastify';
 
@@ -62,6 +62,12 @@ export const usePlayer = () => {
 
 const Player = ({song, isPlaying, onPlay, onPause, audioRef}) => {
 
+  const [volume, setVolume] = useState(0.1);
+
+  useEffect(() => {
+    audioRef.current.volume = volume;
+  }, [volume]);
+
   const getCurrentSongTitle = () => {
     if (song) {
       return <a className="songname" href={song.external_urls.spotify} target="_blank">{song.name}</a>;
@@ -93,17 +99,12 @@ const Player = ({song, isPlaying, onPlay, onPause, audioRef}) => {
 
   return (
     <div className="player-container fixed-bottom">
-      {song && (
-        <audio loop ref={audioRef} src={song.preview_url ?? ""}/>
-      )}
+      <audio loop ref={audioRef} src={song?.preview_url ?? ""}/>
 
       <div className="player-left">
         <img src={getAlbumImageSrc()}/>
         <div>
-          {/*<p><b>Now playing:</b> {getCurrentSongTitle()}</p>*/}
           {getCurrentSongTitle()}
-          {/*<br/>*/}
-          {/*{getCurrentSongAlbum()}*/}
           <p>{getCurrentSongArtist()}</p>
         </div>
       </div>
@@ -119,7 +120,17 @@ const Player = ({song, isPlaying, onPlay, onPause, audioRef}) => {
         }
       </div>
 
-      <div className="player-right">
+      <div className="player-right text-center align-self-center">
+        <div style={{width: "60%", marginLeft: "auto", marginRight: "1.0rem"}}>
+          <small>volume</small>
+          <input type="range"
+                 className="form-range"
+                 value={volume}
+                 onChange={e => setVolume(e.target.value)}
+                 min={0} max={1}
+                 step={0.001}
+          />
+        </div>
       </div>
 
     </div>

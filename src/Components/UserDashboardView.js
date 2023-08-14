@@ -1,4 +1,4 @@
-import {Card, Col, Container, Row} from "react-bootstrap";
+import {Badge, Card, Col, Container, Row, Stack} from "react-bootstrap";
 import TrackDisplayGrid from "./TrackDisplayGrid";
 import TrackDisplayWithGridAndList from "./TrackDisplayWithGridAndList";
 import React from "react";
@@ -18,6 +18,35 @@ function UserDashboardInfoSection({profile}) {
   )
 }
 
+function TopGenreRenderer({genres}) {
+  return (
+    <Col>
+      <Stack direction={"horizontal"} className={"flex-wrap"} gap={2}>
+        {[...genres].map((genre, i) => (
+          <Badge pill bg={i % 2 === 0 ? "dark" : "secondary"}>
+            {genre}
+          </Badge>
+        ))}
+      </Stack>
+    </Col>
+  )
+}
+
+// Takes top artists, returns all their genres uniquely
+function TopGenreHandler({artists}) {
+  // get genres
+  const genres = new Set();
+  artists.forEach(artist => {
+    artist.genres.forEach(genre => {
+      genres.add(genre);
+    });
+  });
+
+  // render them
+
+  return <TopGenreRenderer genres={genres}/>;
+}
+
 
 const UserDashboardView = ({data}) => {
   const topLongTracks = data.tracks_long.items;
@@ -34,50 +63,40 @@ const UserDashboardView = ({data}) => {
   return (
     <div>
       <Container className={"mt-4"}>
-        <Row>
+        <Row style={{marginBottom: "5rem"}}>
           <Col sm="12" md={"8"}>
-            <UserDashboardInfoSection profile={profile} />
+            <UserDashboardInfoSection profile={profile}/>
+            <TopGenreHandler artists={topArtistsLong}/>
           </Col>
           <Col sm="12" md={"4"}>
             <TopArtistsDisplay artists={topArtistsLong}/>
           </Col>
         </Row>
+      </Container>
 
-        <hr/>
 
-        <Row>
-          <Col sm={12} md={4}>
-            <h2>All Time Top Tracks</h2>
-            <TrackDisplayGrid data={topLongTracks} limit={16}/>
-          </Col>
-          <Col sm={12} md={4}>
-            <h2>Past year favorites</h2>
-            <TrackDisplayGrid data={topMedTracks} limit={16}/>
-          </Col>
-          <Col sm={12} md={4}>
-            <h2>Past month favorites</h2>
-            <TrackDisplayGrid data={topShortTracks} limit={16}/>
-          </Col>
-        </Row>
-
-        <Row className={"mt-3 "}>
+      <Container fluid>
+        <Row noGutters={true} gutters={false} style={{marginBottom: "5rem"}}>
           <Col>
-            <h2>Recently listening to...</h2>
+            <h4>Recently listening to...</h4>
             <TrackDisplayWithGridAndList data={recentTracks}/>
           </Col>
         </Row>
-        {/*<Row>*/}
-        {/*  <Col>*/}
-        {/*    <h3>Top </h3>*/}
-        {/*  </Col>*/}
-        {/*  <Col>*/}
 
-        {/*  </Col>*/}
-        {/*  <Col>*/}
-
-        {/*  </Col>*/}
-        {/*</Row>*/}
-
+        <Row style={{marginBottom: "10rem"}}>
+          <Col sm={12} md={4}>
+            <h4>All Time Favorites</h4>
+            <TrackDisplayGrid data={topLongTracks} limit={16}/>
+          </Col>
+          <Col sm={12} md={4}>
+            <h4>Past Year Favorites</h4>
+            <TrackDisplayGrid data={topMedTracks} limit={16}/>
+          </Col>
+          <Col sm={12} md={4}>
+            <h4>Past Month Favorites</h4>
+            <TrackDisplayGrid data={topShortTracks} limit={16}/>
+          </Col>
+        </Row>
       </Container>
     </div>
   );

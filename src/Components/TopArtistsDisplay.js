@@ -23,7 +23,7 @@ function TopArtistsDisplay({artists, defaultLimit = 5}) {
             {
               artists.slice(0, getLimit()).map(artist => (
                 <li className="m-0 p-0 mb-1">
-                  <a style={{fontSize: 12}} href={artist.external_urls.spotify} target="_blank" className="d-flex align-items-center">
+                  <a href={artist.external_urls.spotify} target="_blank" className="d-flex align-items-center">
                     <img src={artist.images[artist.images.length - 1].url} width={16} height={16}/>
                     <span className={"ms-2"}>{artist.name}</span>
                   </a>

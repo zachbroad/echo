@@ -1,7 +1,7 @@
 import React from "react";
 import {Route, Routes} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import './App.scss';
 import HomePage from "./Pages/HomePage";
 import UserDashboard from "./Pages/UserDashboard";
 import UserList from "./Pages/UserList";

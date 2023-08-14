@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="0dce5ce3-018e-46b5-a975-04aea11cc1e9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Player.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Player.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/TopArtistsDisplay.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TopArtistsDisplay.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/TrackDisplay.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TrackDisplay.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/TrackDisplayWithGridAndList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TrackDisplayWithGridAndList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/TrackGrid.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TrackGrid.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/UserDashboardView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/UserDashboardView.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,6 +24,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/.cache/JetBrains/WebStorm2023.2/javascript/typings/react-dom/18.2.0/node_modules/@types/react/index.d.ts" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/node_modules/spotify-web-api-js/src/typings/spotify-api.d.ts" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/node_modules/spotify-web-api-js/src/typings/spotify-web-api.d.ts" root0="SKIP_INSPECTION" />
   </component>
@@ -90,7 +96,7 @@
       <workItem from="1691679984189" duration="1626000" />
       <workItem from="1691692664791" duration="9966000" />
       <workItem from="1691788007213" duration="22533000" />
-      <workItem from="1692041761361" duration="3507000" />
+      <workItem from="1692041761361" duration="8087000" />
     </task>
     <servers />
   </component>

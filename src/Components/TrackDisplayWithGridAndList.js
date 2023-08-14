@@ -10,14 +10,14 @@ export default function TrackDisplayWithGridAndList({data}) {
     <>
       {
         data ? (
-          <div className="track-display-container shadow-sm">
+          <div className="track-display-container">
             <Row>
-              <Col sm={12} md={8}>
+              <Col sm={12} md={12}>
                 <TrackGrid tracks={data}/>
               </Col>
-              <Col sm={12} md={4}>
-                <TrackSongList tracks={data}/>
-              </Col>
+              {/*<Col sm={12} md={4}>*/}
+              {/*  <TrackSongList tracks={data}/>*/}
+              {/*</Col>*/}
             </Row>
           </div>
         ) : (
