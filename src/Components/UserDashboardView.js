@@ -2,6 +2,21 @@ import {Card, Col, Container, Row} from "react-bootstrap";
 import TrackDisplayGrid from "./TrackDisplayGrid";
 import TrackDisplayWithGridAndList from "./TrackDisplayWithGridAndList";
 import React from "react";
+import TopArtistsDisplay from "./TopArtistsDisplay";
+
+
+function UserDashboardInfoSection({profile}) {
+  return (
+    <div className="d-flex align-items-center mb-3">
+      <img className="rounded-circle me-2" src={profile.images[0].url}/>
+      <div>
+        <h2 className="ml-3 d-inline-flex align-content-center">@{profile.display_name}'s dashboard</h2>
+        <br/>
+        <small>{profile.followers.total} followers</small>
+      </div>
+    </div>
+  )
+}
 
 
 const UserDashboardView = ({data}) => {
@@ -21,30 +36,10 @@ const UserDashboardView = ({data}) => {
       <Container className={"mt-4"}>
         <Row>
           <Col sm="12" md={"8"}>
-            <div className="d-flex align-items-center mb-3">
-              <img className="rounded-circle me-2" src={profile.images[0].url}/>
-              <div>
-                <h2 className="ml-3 d-inline-flex align-content-center">@{profile.display_name}'s dashboard</h2>
-                <br/>
-                <small>{profile.followers.total} followers</small>
-              </div>
-            </div>
+            <UserDashboardInfoSection profile={profile} />
           </Col>
           <Col sm="12" md={"4"}>
-            <Card>
-              <Card.Header>
-                <Card.Title>Top 5 Artists</Card.Title>
-              </Card.Header>
-              <Card.Body>
-                <ol>
-                  {
-                    topArtistsLong.slice(0, 5).map(artist => (
-                      <li>{artist.name}</li>
-                    ))
-                  }
-                </ol>
-              </Card.Body>
-            </Card>
+            <TopArtistsDisplay artists={topArtistsLong}/>
           </Col>
         </Row>
 
