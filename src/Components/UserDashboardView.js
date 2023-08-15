@@ -3,6 +3,7 @@ import TrackDisplayGrid from "./TrackDisplayGrid";
 import TrackDisplayWithGridAndList from "./TrackDisplayWithGridAndList";
 import React from "react";
 import TopArtistsDisplay from "./TopArtistsDisplay";
+import Magazine from "./Magazine";
 
 
 function UserDashboardInfoSection({profile}) {
@@ -59,6 +60,8 @@ const UserDashboardView = ({data}) => {
 
   const recentTracks = data.recents.items;
   const profile = data.profile;
+  const magazine = data.magazine;
+  console.dir(magazine)
 
   return (
     <div>
@@ -66,10 +69,11 @@ const UserDashboardView = ({data}) => {
         <Row style={{marginBottom: "5rem"}}>
           <Col sm="12" md={"8"}>
             <UserDashboardInfoSection profile={profile}/>
-            <TopGenreHandler artists={topArtistsLong}/>
+            <Magazine magazineData={magazine.trim().split('\r\n')}/>
           </Col>
           <Col sm="12" md={"4"}>
             <TopArtistsDisplay artists={topArtistsLong}/>
+            <TopGenreHandler artists={topArtistsLong}/>
           </Col>
         </Row>
       </Container>

@@ -69,7 +69,7 @@ export const AuthProvider = ({children}) => {
 
           setIsLoggedIn(true);
         } catch (e) {
-          toast("Error logging in! " + e);
+          // toast("Error logging in! " + e);
           console.error(e);
         }
       }

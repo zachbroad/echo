@@ -11,7 +11,6 @@ export const PlayerProvider = ({children}) => {
 
   useEffect(() => {
     if (song) {
-      console.dir(song);
       var songName = song.name;
       var artist = song.artists[0].name;
       toast(<div>Now playing <b>{songName}</b> by <b>{artist}</b>.</div>, {
