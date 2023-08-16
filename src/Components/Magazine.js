@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {Carousel} from "react-bootstrap";
-
+import he from 'he';
 
 function Magazine({magazineData}) {
 
@@ -12,7 +12,7 @@ function Magazine({magazineData}) {
             <Carousel.Item text={"test"} style={{height: "350px"}}>
               {
                 <Carousel.Caption>
-                  <p dangerouslySetInnerHTML={{__html: line}}></p>
+                  <p dangerouslySetInnerHTML={{__html: he.decode(line)}}></p>
                 </Carousel.Caption>
               }
             </Carousel.Item>

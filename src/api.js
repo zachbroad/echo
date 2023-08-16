@@ -1,7 +1,9 @@
+// eslint-disable-next-line no-unused-vars
+
 const LOCAL = "http://127.0.0.1:8000";
 const PROD = "https://echo-usn3.onrender.com"
 
-const BASE = LOCAL;
+const BASE = PROD;
 
 // AUTH FLOW ENDPOINTS
 export const API_AUTH = BASE + "/spotify/auth/";

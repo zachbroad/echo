@@ -1,7 +1,7 @@
 import {Button, Card} from "react-bootstrap";
 import React, {useState} from "react";
 
-function TopArtistsDisplay({artists, defaultLimit = 5}) {
+function TopArtistsDisplay({artists, defaultLimit = 5, className}) {
   function getLimit() {
     if (expanded) {
       return 20;
@@ -13,9 +13,9 @@ function TopArtistsDisplay({artists, defaultLimit = 5}) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <Card>
+    <Card className={className}>
       <Card.Header>
-        <Card.Title>Top 5 Artists</Card.Title>
+        <Card.Title>Top Artists</Card.Title>
       </Card.Header>
       <Card.Body>
         <div>

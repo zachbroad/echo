@@ -1,4 +1,4 @@
-import {Badge, Card, Col, Container, Row, Stack} from "react-bootstrap";
+import {Badge, Col, Container, Row, Stack} from "react-bootstrap";
 import TrackDisplayGrid from "./TrackDisplayGrid";
 import TrackDisplayWithGridAndList from "./TrackDisplayWithGridAndList";
 import React from "react";
@@ -9,7 +9,7 @@ import Magazine from "./Magazine";
 function UserDashboardInfoSection({profile}) {
   return (
     <div className="d-flex align-items-center mb-3">
-      <img className="rounded-circle me-2" src={profile.images[0].url}/>
+      <img alt={`${profile.display_name} on Echo`} className="rounded-circle me-2" src={profile.images[0].url}/>
       <div>
         <h2 className="ml-3 d-inline-flex align-content-center">@{profile.display_name}'s dashboard</h2>
         <br/>
@@ -69,10 +69,10 @@ const UserDashboardView = ({data}) => {
         <Row style={{marginBottom: "5rem"}}>
           <Col sm="12" md={"8"}>
             <UserDashboardInfoSection profile={profile}/>
-            <Magazine magazineData={magazine.trim().split('\r\n')}/>
+            <Magazine magazineData={magazine.trim().split(/\\n|\\n\\n|\n/)}/>
           </Col>
           <Col sm="12" md={"4"}>
-            <TopArtistsDisplay artists={topArtistsLong}/>
+            <TopArtistsDisplay className={"mb-4"} artists={topArtistsLong}/>
             <TopGenreHandler artists={topArtistsLong}/>
           </Col>
         </Row>

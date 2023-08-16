@@ -17,12 +17,19 @@ function HomePageConnectSpotify() {
 }
 
 function HomePageLoggedIn() {
+  const {token, isLoggedIn, logout, profile} = useAuth();
+
   return (
-    <Row>
-      <Col style={{padding: 0}}>
-        <TrackDisplayWithGridAndList/>
-      </Col>
-    </Row>
+    <Container className="mx-2">
+      <Row>
+        <Col style={{padding: 0}}>
+          <h1>ECHO</h1>
+          <h3>YOUR SPOTIFY — VISUALIZED</h3>
+          <p>Welcome back, @{profile.display_name}.</p>
+
+        </Col>
+      </Row>
+    </Container>
   )
 }
 
@@ -32,13 +39,10 @@ export default function HomePage() {
   return (
     <>
       <Header/>
-
-      <Container fluid className="">
-        {isLoggedIn ?
-          <HomePageLoggedIn/> :
-          <HomePageConnectSpotify/>
-        }
-      </Container>
+      {isLoggedIn ?
+        <HomePageLoggedIn/> :
+        <HomePageConnectSpotify/>
+      }
     </>
   )
 }

@@ -10,14 +10,20 @@ import {toast} from "react-toastify";
 export default function UserSettings() {
   const {token, isLoggedIn, logout, profile} = useAuth();
   const settings = useLoaderData();
-  const [isPublic, setIsPublic] = useState(false)
   const formRef = useRef()
+
+  const [isPublic, setIsPublic] = useState(false)
+  const UPDATE_TEXT = 'Update my Echo';
+  const [updateButtonText, setUpdateButtonText] = useState(UPDATE_TEXT)
+  const REFRESH_TEXT = 'Refresh my user data';
+  const [refreshButtonText, setRefreshButtonText] = useState(REFRESH_TEXT)
 
   useEffect(() => {
     setIsPublic(settings.public)
   }, [settings]);
 
   const updateMyMagazine = async () => {
+    setUpdateButtonText("Updating...")
     const response = await fetch(
       API_UPDATEMYMAGAZINE, {
         headers: {
@@ -30,11 +36,12 @@ export default function UserSettings() {
     const responseData = await response.json();
     if (!response.ok) {
       toast(responseData)
+      setUpdateButtonText(UPDATE_TEXT);
       return;
     }
 
     toast('Your Echo has been updated.')
-    return;
+    setUpdateButtonText(UPDATE_TEXT);
   };
 
   const refreshUserData = async () => {
@@ -49,11 +56,13 @@ export default function UserSettings() {
 
     const responseData = await response.json();
     if (!response.ok) {
-      toast(responseData)
+      toast(responseData);
+      setRefreshButtonText(REFRESH_TEXT);
       return;
     }
 
     toast('Your data has been refreshed')
+    setRefreshButtonText(REFRESH_TEXT);
     return;
   };
 
@@ -93,14 +102,14 @@ export default function UserSettings() {
               </FormGroup>
               <FormGroup>
                 <FormText>User Bio</FormText>
-                <FormControl as="textarea"  aria-multiline={true} style={{maxWidth: "350px"}}/>
+                <FormControl as="textarea" aria-multiline={true} style={{maxWidth: "350px"}}/>
               </FormGroup>
               <Button className="me-2 mt-2" variant="dark" onClick={e => saveSettings(e)}>Save</Button>
             </Form>
             <hr/>
             <h2>Actions</h2>
-            <Button className="me-2" variant="dark" onClick={() => updateMyMagazine()}>Update my Echo</Button>
-            <Button className="me-2" variant="dark" onClick={() => refreshUserData()}>Refresh my user data</Button>
+            <Button className="me-2" variant="dark" onClick={() => updateMyMagazine()}>{updateButtonText}</Button>
+            <Button className="me-2" variant="dark" onClick={() => refreshUserData()}>{refreshButtonText}</Button>
           </Col>
         </Row>
       </Container>
