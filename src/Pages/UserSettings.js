@@ -13,6 +13,7 @@ export default function UserSettings() {
   const formRef = useRef()
 
   const [isPublic, setIsPublic] = useState(false)
+  const [bio, setBio] = useState('');
   const UPDATE_TEXT = 'Update my Echo';
   const [updateButtonText, setUpdateButtonText] = useState(UPDATE_TEXT)
   const REFRESH_TEXT = 'Refresh my user data';
@@ -22,6 +23,12 @@ export default function UserSettings() {
     setIsPublic(settings.public)
   }, [settings]);
 
+  useEffect(() => {
+    setIsPublic(settings.public);
+    if (settings.bio) {
+      setBio(settings.bio);
+    }
+  }, [settings]);
   const updateMyMagazine = async () => {
     setUpdateButtonText("Updating...")
     const response = await fetch(
@@ -75,7 +82,8 @@ export default function UserSettings() {
       },
       method: "PATCH",
       body: JSON.stringify({
-        "public": isPublic
+        "public": isPublic,
+        "bio": bio
       })
     });
     if (response.ok) {
@@ -102,7 +110,7 @@ export default function UserSettings() {
               </FormGroup>
               <FormGroup>
                 <FormText>User Bio</FormText>
-                <FormControl as="textarea" aria-multiline={true} style={{maxWidth: "350px"}}/>
+                <FormControl as="textarea" value={bio} placeholder={bio || "enter bio here la.."} onChange={e => setBio(e.target.value)} aria-multiline={true} style={{maxWidth: "350px"}}/>
               </FormGroup>
               <Button className="me-2 mt-2" variant="dark" onClick={e => saveSettings(e)}>Save</Button>
             </Form>
