@@ -45,6 +45,7 @@ export default function UserSettings() {
   };
 
   const refreshUserData = async () => {
+    setRefreshButtonText('Refreshing...')
     const response = await fetch(
       API_REFRESHUSERDATA, {
         headers: {

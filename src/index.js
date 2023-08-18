@@ -17,6 +17,7 @@ import UserList from "./Pages/UserList";
 import UserDetail from "./Pages/UserDetail";
 import {API_ME, API_DASHBOARD, API_USERDETAIL, API_SETTINGS, API_USERS} from "./api";
 import UserSettings from "./Pages/UserSettings";
+import Loading from "./Components/Loading";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -51,7 +52,9 @@ function RoutesComponent() {
           "data": d,
           "profile": userProfile
         };
-      }
+      },
+      
+      pending: <Loading />,
     },
     {
       path: "/users/",

@@ -13,23 +13,23 @@ export const PlayerProvider = ({children}) => {
     if (song) {
       var songName = song.name;
       var artist = song.artists[0].name;
-      toast(<div>Now playing <b>{songName}</b> by <b>{artist}</b>.</div>, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-      setIsPlaying(true);
+      // toast(<div>Now playing <b>{songName}</b> by <b>{artist}</b>.</div>, {
+      //   position: "bottom-left",
+      //   autoClose: 5000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "light",
+      // });
       setIsPlaying(true);
       audioRef.current.play();
     }
   }, [song]);
 
   const onPlay = () => {
+    setIsPlaying(true);
     if (audioRef.current) {
       audioRef.current.play();
     }
@@ -60,8 +60,8 @@ export const usePlayer = () => {
 };
 
 const Player = ({song, isPlaying, onPlay, onPause, audioRef}) => {
-
-  const [volume, setVolume] = useState(0.1);
+  const DEFAULT_VOLUME_LEVEL = 1.0;
+  const [volume, setVolume] = useState(DEFAULT_VOLUME_LEVEL);
 
   useEffect(() => {
     audioRef.current.volume = volume;
@@ -69,10 +69,10 @@ const Player = ({song, isPlaying, onPlay, onPause, audioRef}) => {
 
   const getCurrentSongTitle = () => {
     if (song) {
-      return <a className="songname" href={song.external_urls.spotify} target="_blank">{song.name}</a>;
+      return <a className="song-title" href={song.external_urls.spotify} target="_blank">{song.name}</a>;
     }
 
-    return <p className="songname">no song</p>;
+    return "no song";
   }
 
   const getCurrentSongAlbum = () => {
@@ -96,43 +96,68 @@ const Player = ({song, isPlaying, onPlay, onPause, audioRef}) => {
     return song ? song.album.images[0].url : null;
   }
 
+  function Play() {
+    return (
+      <svg onClick={onPlay} id="i-play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"
+           fill="black"
+           stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M10 2 L10 30 24 16 Z"/>
+      </svg>
+    )
+  }
+
+  function Pause() {
+    return (
+      <svg onClick={onPause} id="i-pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32"
+           fill="none"
+           stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M23 2 L23 30 M9 2 L9 30"/>
+      </svg>
+    )
+  }
+
+
   return (
-    <div className="player-container fixed-bottom">
+    <>
       <audio loop ref={audioRef} src={song?.preview_url ?? ""}/>
+      {song &&
+        <div className="player-container fixed-bottom">
 
-      <div className="player-left">
-        <img src={getAlbumImageSrc()}/>
-        <div>
-          {getCurrentSongTitle()}
-          <p>{getCurrentSongArtist()}</p>
-        </div>
-      </div>
+          <div className="player-left">
+            <img src={getAlbumImageSrc()}/>
+            <div className="d-flex flex-column align-content-center">
+          <span className="song-title">
+            {getCurrentSongTitle()}
+          </span>
+              <span className="song-artist">{getCurrentSongArtist()}</span>
+            </div>
+          </div>
 
 
-      <div className="player-center">
-        {song &&
-          <>
-            {isPlaying ? <button onClick={onPause}>Pause</button>
-              : <button onClick={onPlay}>Play</button>
+          <div className="player-center">
+            {song &&
+              <div className="player-controls">
+                {isPlaying ? <Pause/> : <Play/>}
+              </div>
             }
-          </>
-        }
-      </div>
+          </div>
 
-      <div className="player-right text-center align-self-center">
-        <div style={{width: "60%", marginLeft: "auto", marginRight: "1.0rem"}}>
-          <small>volume</small>
-          <input type="range"
-                 className="form-range"
-                 value={volume}
-                 onChange={e => setVolume(e.target.value)}
-                 min={0} max={1}
-                 step={0.001}
-          />
+          <div className="player-right text-center align-self-center">
+            <div style={{width: "60%", marginLeft: "auto", marginRight: "1.0rem"}}>
+              <small>volume</small>
+              <input type="range"
+                     className="form-range"
+                     value={volume}
+                     onChange={e => setVolume(e.target.value)}
+                     min={0} max={1}
+                     step={0.001}
+              />
+            </div>
+          </div>
+
         </div>
-      </div>
-
-    </div>
+      }
+    </>
   );
 };
 

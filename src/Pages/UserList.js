@@ -14,7 +14,7 @@ export default function UserList() {
   const ViewUsersLoaded = () => (
     <div>
       <Container className="mt-4">
-        <h2>users</h2>
+        <h2>Explore</h2>
         <Row>
           {users.map(user => {
             return (

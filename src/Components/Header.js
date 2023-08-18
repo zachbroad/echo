@@ -1,51 +1,12 @@
 import {Container, Dropdown, DropdownButton, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import {generateCodeChallenge, generateRandomString} from "../util";
-import {API_AUTH} from "../api";
+import {API_AUTH, redirectAndAuthWithSpotify} from "../api";
 import {useAuth} from "./Auth";
 import {Link} from 'react-router-dom';
 
 export default function Header() {
   const {token, isLoggedIn, logout, profile} = useAuth();
 
-  // REDIRECT USER TO SPOTIFY
-  async function redirectAndAuthWithSpotify() {
-    const clientId = process.env.REACT_APP_CLIENT_ID;
-    const redirectUri = 'http://127.0.0.1:3000';
-
-    let codeVerifier = generateRandomString(128);
-
-    await generateCodeChallenge(codeVerifier).then(codeChallenge => {
-      let state = generateRandomString(16);
-      let scope = 'user-read-private user-read-email user-library-read';
-
-      localStorage.setItem('code_verifier', codeVerifier);
-
-      let args = new URLSearchParams({
-        response_type: 'code',
-        client_id: clientId,
-        scope: scope,
-        redirect_uri: redirectUri,
-        state: state,
-        code_challenge_method: 'S256',
-        code_challenge: codeChallenge
-      });
-    });
-
-    let json_data = null;
-    await fetch(API_AUTH, {
-      method: "GET",
-      mode: "cors"
-    })
-      .then(response => {
-        return response.json()
-      })
-      .then(responseJson => {
-        return json_data = responseJson;
-      })
-      .catch(e => console.error(e))
-
-    window.location = json_data.url;
-  }
 
   const reflectionStyle = {
     transform: 'scaleX(-1)', // Flip horizontally
@@ -65,28 +26,28 @@ export default function Header() {
           <h1 style={reflectionStyle} className="font-weight-bold">ECHO</h1>
         </span>
         </Link>
-        <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <Nav.Link as={Link} to="/users/">Users</Nav.Link>
-            {/*<NavDropdown title="Dropdown" id="basic-nav-dropdown">*/}
-            {/*  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>*/}
-            {/*  <NavDropdown.Item href="#action/3.2">*/}
-            {/*    Another action*/}
-            {/*  </NavDropdown.Item>*/}
-            {/*  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>*/}
-            {/*  <NavDropdown.Divider/>*/}
-            {/*  <NavDropdown.Item href="#action/3.4">*/}
-            {/*    Separated link*/}
-            {/*  </NavDropdown.Item>*/}
-            {/*</NavDropdown>*/}
-          </Nav>
-        </Navbar.Collapse>
+        {/*<Navbar.Toggle aria-controls="basic-navbar-nav"/>*/}
+        {/*<Navbar.Collapse id="basic-navbar-nav">*/}
+        {/*  <Nav className="me-auto">*/}
+        {/*    <Nav.Link as={Link} to="/">Home</Nav.Link>*/}
+        {/*    <Nav.Link as={Link} to="/users/">Users</Nav.Link>*/}
+        {/*    /!*<NavDropdown title="Dropdown" id="basic-nav-dropdown">*!/*/}
+        {/*    /!*  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>*!/*/}
+        {/*    /!*  <NavDropdown.Item href="#action/3.2">*!/*/}
+        {/*    /!*    Another action*!/*/}
+        {/*    /!*  </NavDropdown.Item>*!/*/}
+        {/*    /!*  <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>*!/*/}
+        {/*    /!*  <NavDropdown.Divider/>*!/*/}
+        {/*    /!*  <NavDropdown.Item href="#action/3.4">*!/*/}
+        {/*    /!*    Separated link*!/*/}
+        {/*    /!*  </NavDropdown.Item>*!/*/}
+        {/*    /!*</NavDropdown>*!/*/}
+        {/*  </Nav>*/}
+        {/*</Navbar.Collapse>*/}
         <div className="ml-auto">
           {isLoggedIn ? (
             <DropdownButton variant="outline-secondary" id="dropdown-basic-button"
-                            title={`Welcome, ${profile.display_name}`}>
+                            title={`${profile.display_name}`}>
               <Dropdown.Item as={Link} to={"/dashboard/"}>
                 My dashboard
               </Dropdown.Item>

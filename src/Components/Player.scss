@@ -1,32 +1,58 @@
-
-
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
 @import 'bootstrap/scss/mixins';
+@import '../variables';
 
 .player-container {
   margin-top: auto;
   width: 100vw;
-  background-color: antiquewhite;
-  padding: 1rem;
+  background-color: $echo-player;
+  border-top: 1px solid darken($echo-player, 5);
+  opacity: 1;
+  padding: 0.75rem;
   text-align: left;
-  display: grid;
   grid-template-columns: 1fr;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+
+  a {
+    color: black;
+  }
+
+  svg {
+    fill: black;
+    color: black;
+  }
 
   @include media-breakpoint-up(md) {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
 
 
-
   .player-left {
     display: flex;
+    align-items: center;
+    align-content: center;
 
     img {
-      height: 100px;
-      width: 100px;
+      height: 44px;
+      width: 44px;
       margin-right: 0.5rem;
     }
+
+    .song-title {
+      font-weight: bold;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .song-artist {
+
+    }
+
   }
 
 
@@ -38,9 +64,6 @@
     //a:nth-of-type(2) {
     //  font-style: italic;
     //}
-    .songname {
-      font-size: 26px;
-    }
   }
 
   .player-center {
@@ -50,5 +73,40 @@
     justify-items: center;
     text-align: center;
   }
+
+  .player-right {
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+  }
+  input.form-range::-webkit-slider-thumb {
+    background: lighten($echo-player, 35);
+    border: 1px solid darken($echo-player, 30);
+    height: 16px;
+    width: 16px
+  }
+  input.form-range::-webkit-slider-runnable-track {
+    background: darken($echo-player, 5);
+    border: 1px solid darken($echo-player, 25);
+    height: 10px;
+  }
+
+
+  input.form-range::-moz-range-thumb {
+    background: $echo-player;
+    border: 1px solid $echo-primary;
+  }
+
+  input.form-range::-ms-thumb {
+    background: $echo-player;
+    border: 1px solid $echo-primary;
+  }
+
 }
 
+
+.player-controls {
+  svg:hover {
+    transform: scale(1.05);
+  }
+}
