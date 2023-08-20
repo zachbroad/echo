@@ -4,9 +4,13 @@ import {generateCodeChallenge, generateRandomString} from "./util";
 import {toast} from "react-toastify";
 
 const LOCAL = "http://127.0.0.1:8000";
-const PROD = "https://echo-usn3.onrender.com"
+const PROD = "https://echo-usn3.onrender.com";
 
-const BASE = LOCAL;
+
+let BASE = LOCAL;
+if (process.env.REACT_APP_PRODUCTION === 1) {
+  BASE = PROD;
+}
 
 // AUTH FLOW ENDPOINTS
 export const API_AUTH = BASE + "/spotify/auth/";
