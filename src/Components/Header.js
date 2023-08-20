@@ -30,7 +30,7 @@ export default function Header() {
         {/*<Navbar.Collapse id="basic-navbar-nav">*/}
         {/*  <Nav className="me-auto">*/}
         {/*    <Nav.Link as={Link} to="/">Home</Nav.Link>*/}
-        {/*    <Nav.Link as={Link} to="/users/">Users</Nav.Link>*/}
+        {/*    <Nav.Link as={Link} to="/explore/">Users</Nav.Link>*/}
         {/*    /!*<NavDropdown title="Dropdown" id="basic-nav-dropdown">*!/*/}
         {/*    /!*  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>*!/*/}
         {/*    /!*  <NavDropdown.Item href="#action/3.2">*!/*/}
@@ -74,7 +74,7 @@ export default function Header() {
       <div className="container d-flex align-items-center">
         <Nav className="">
           <Nav.Link as={Link} to="/">Home</Nav.Link>
-          <Nav.Link as={Link} to="/users/">Users</Nav.Link>
+          <Nav.Link as={Link} to="/explore/">Users</Nav.Link>
         </Nav>
       </div>
     </nav>

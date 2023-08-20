@@ -13,11 +13,12 @@ import {AuthProvider, useAuth} from "./Components/Auth";
 // Toaster oven
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import UserList from "./Pages/UserList";
+import Explore from "./Pages/Explore";
 import UserDetail from "./Pages/UserDetail";
 import {API_ME, API_DASHBOARD, API_USERDETAIL, API_SETTINGS, API_USERS} from "./api";
 import UserSettings from "./Pages/UserSettings";
 import Loading from "./Components/Loading";
+import ErrorPage from "./Pages/ErrorPage";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -53,12 +54,12 @@ function RoutesComponent() {
           "profile": userProfile
         };
       },
-      
       pending: <Loading />,
+      errorElement: <ErrorPage />
     },
     {
-      path: "/users/",
-      element: <UserList/>,
+      path: "/explore/",
+      element: <Explore/>,
       loader: async ({request, params}) => {
         const response = await fetch(API_USERS, {
             headers: {
@@ -73,10 +74,11 @@ function RoutesComponent() {
         }
 
         return [jsonData, null];
-      }
+      },
+      errorElement: <ErrorPage />
     },
     {
-      path: "/users/:username/",
+      path: "/explore/:username/",
       element: <UserDetail/>,
       loader: async ({request, params}) => {
         const response = await fetch(API_USERDETAIL(params.username), {
@@ -91,7 +93,8 @@ function RoutesComponent() {
         }
 
         return [userDetailData, null];
-      }
+      },
+      errorElement: <ErrorPage />
     },
     {
       path: "/settings/",
@@ -105,20 +108,8 @@ function RoutesComponent() {
         const userSettingsData = await response.json();
         return userSettingsData;
       },
-
-      // action: async ({params, request}) => {
-      //   const response = await fetch(API_SETTINGS, {
-      //     headers: {
-      //       "Authorization": `Token ${token}`
-      //     },
-      //     method: "PUT",
-      //     body: request.formData()
-      //   });
-      //   const userSettingsData = await response.json();
-      //   return userSettingsData;
-      // }
+      errorElement: <ErrorPage />
     },
-
   ]);
 
   return <RouterProvider router={router}/>;
@@ -137,7 +128,7 @@ root.render(
       </div>
       {/* Same as */}
       <ToastContainer
-        position="top-right"
+        position="top-left"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}

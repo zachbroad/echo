@@ -1,6 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 
 import {generateCodeChallenge, generateRandomString} from "./util";
+import {toast} from "react-toastify";
 
 const LOCAL = "http://127.0.0.1:8000";
 const PROD = "https://echo-usn3.onrender.com"
@@ -59,7 +60,9 @@ export async function redirectAndAuthWithSpotify() {
     .then(responseJson => {
       return json_data = responseJson;
     })
-    .catch(e => console.error(e))
-
+    .catch(e => {
+      toast("Error logging in — server down?" + e)
+      return;
+    })
   window.location = json_data.url;
 }

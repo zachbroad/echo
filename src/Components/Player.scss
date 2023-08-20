@@ -110,3 +110,20 @@
     transform: scale(1.05);
   }
 }
+
+.player-modal {
+  position: absolute;
+  width: 100vh;
+  height: 100vw;
+  background-color: rgba(0,0,0,0.8);
+
+  .player-modal__container {
+    opacity: 1;
+    position: absolute;
+    background-color: red;
+    top: subtract(50%, 250px);
+    left: subtract(50%, 250px);
+    width: 500px;
+    height: 500px;
+  }
+}

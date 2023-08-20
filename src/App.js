@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import HomePage from "./Pages/HomePage";
 import UserDashboard from "./Pages/UserDashboard";
-import UserList from "./Pages/UserList";
+import Explore from "./Pages/Explore";
 
 export default function App() {
   // return (

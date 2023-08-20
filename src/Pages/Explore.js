@@ -7,32 +7,38 @@ import Loading from "../Components/Loading";
 import AlbumArtworkNode from "../Components/AlbumArtworkNode";
 import {Link} from "react-router-dom";
 import {useLoaderData} from "react-router";
+import './Explore.scss';
 
-export default function UserList() {
+function ExploreItem({user}) {
+
+  if (user.recent == null) {
+    return null;
+  }
+
+
+  return (
+    <div key={user.username} className="explore-item">
+      <div className="explore-item__header">
+        <Link to={`/explore/${user.username}/`}>{user.username}</Link>
+      </div>
+      <div className="track-grid smallest">
+        {user.recent.items.slice(0, 16).map(s => (
+          <AlbumArtworkNode track={s.track} key={s.track.id}/>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default function Explore() {
   const [users, error] = useLoaderData();
 
   const ViewUsersLoaded = () => (
     <div>
       <Container className="mt-4">
         <h2>Explore</h2>
-        <Row>
-          {users.map(user => {
-            return (
-              user.recent != null ? (
-                <Col sm="12" md="6" key={user.username}>
-                  <div>
-                    <Link to={`/users/${user.username}/`}>{user.username}</Link>
-                    <div className="track-grid smallest">
-                      {user.recent.items.slice(0, 16).map(s => (
-                        <AlbumArtworkNode track={s.track} key={s.track.id}/>
-                      ))}
-                    </div>
-                    <hr/>
-                  </div>
-                </Col>
-              ) : null
-            );
-          })}
+        <Row className={"explore-container"}>
+          {users.map(user => <ExploreItem user={user}/>)}
         </Row>
       </Container>
     </div>

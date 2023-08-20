@@ -4,6 +4,25 @@ import {toast} from 'react-toastify';
 
 const PlayerContext = createContext();
 
+function PlayerModal({song, show = true}) {
+  if (show ==false) {
+    return;
+  }
+
+  return (
+    <div className="player-modal">
+      <div className="player-modal__container">
+        <h1>Modal</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis culpa cumque deleniti dolor, enim laborum
+          molestias nam natus odio perferendis praesentium quae quisquam recusandae repellat rerum sed temporibus?
+          Eaque,
+          voluptates.
+        </p>
+      </div>
+    </div>
+  )
+}
+
 export const PlayerProvider = ({children}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [song, setSong] = useState(null);
@@ -62,6 +81,7 @@ export const usePlayer = () => {
 const Player = ({song, isPlaying, onPlay, onPause, audioRef}) => {
   const DEFAULT_VOLUME_LEVEL = 1.0;
   const [volume, setVolume] = useState(DEFAULT_VOLUME_LEVEL);
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     audioRef.current.volume = volume;
@@ -120,11 +140,12 @@ const Player = ({song, isPlaying, onPlay, onPause, audioRef}) => {
   return (
     <>
       <audio loop ref={audioRef} src={song?.preview_url ?? ""}/>
+      {/*<PlayerModal show={false} />*/}
       {song &&
         <div className="player-container fixed-bottom">
 
           <div className="player-left">
-            <img src={getAlbumImageSrc()}/>
+            <img src={getAlbumImageSrc()} onClick={() => setExpanded(!expanded)}/>
             <div className="d-flex flex-column align-content-center">
           <span className="song-title">
             {getCurrentSongTitle()}

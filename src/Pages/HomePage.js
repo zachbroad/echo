@@ -37,7 +37,7 @@ function HomePageLoggedIn() {
           <h3>YOUR SPOTIFY — VISUALIZED</h3>
           <p>Welcome back, @{profile.display_name}.</p>
           <Button as={Link} to={"/dashboard/"} className="me-2" variant="dark">Your Dashboard</Button>
-          <Button as={Link} to={"/users/"} className="me-2" variant="dark">Explore</Button>
+          <Button as={Link} to={"/explore/"} className="me-2" variant="dark">Explore</Button>
         </Col>
       </Row>
     </Container>
