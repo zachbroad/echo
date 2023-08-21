@@ -8,7 +8,7 @@ const PROD = "https://api.echoyourmusic.com";
 
 
 let BASE = LOCAL;
-if (process.env.REACT_APP_PRODUCTION === 1) {
+if (process.env.REACT_APP_PRODUCTION == 1 || process.env.REACT_APP_PRODUCTION == '1') {
   BASE = PROD;
 }
 
