@@ -4,7 +4,7 @@ import {generateCodeChallenge, generateRandomString} from "./util";
 import {toast} from "react-toastify";
 
 const LOCAL = "http://127.0.0.1:8000";
-const PROD = "https://echo-usn3.onrender.com";
+const PROD = "https://api.echoyourmusic.com";
 
 
 let BASE = LOCAL;
@@ -32,7 +32,7 @@ export const API_USERDETAIL = (username) => API_DASHBOARD + username + "/";
 // REDIRECT USER TO SPOTIFY
 export async function redirectAndAuthWithSpotify() {
   const clientId = process.env.REACT_APP_CLIENT_ID;
-  const redirectUri = 'http://127.0.0.1:3000';
+  const redirectUri = BASE;
 
   let codeVerifier = generateRandomString(128);
 

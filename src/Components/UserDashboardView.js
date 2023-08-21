@@ -72,7 +72,7 @@ const UserDashboardView = ({data}) => {
             <Magazine magazineData={magazine.trim().split(/\\n|\\n\\n|\n/)}/>
           </Col>
           <Col sm="12" md={"4"}>
-            <TopArtistsDisplay className={"mb-4"} artists={topArtistsLong}/>
+            <TopArtistsDisplay className={"mb-4"} artists={topArtistsMed}/>
             <TopGenreHandler artists={topArtistsLong}/>
           </Col>
         </Row>

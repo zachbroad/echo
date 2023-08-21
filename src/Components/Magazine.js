@@ -9,7 +9,7 @@ function Magazine({magazineData}) {
       {
         magazineData.filter((i) => i != "").map(line => {
           return (
-            <Carousel.Item text={"test"} style={{height: "200px"}}>
+            <Carousel.Item text={"test"} style={{height: "300px"}}>
               {
                 <Carousel.Caption>
                   <p dangerouslySetInnerHTML={{__html: he.decode(line)}}></p>
