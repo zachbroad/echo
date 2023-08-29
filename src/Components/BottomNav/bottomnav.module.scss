@@ -2,8 +2,9 @@
 
 .bottomNavigation {
   background-color: darken($echo-player, 2);
-  height: 70px;
+  height: 51px;
   width: 100vw;
+  border-top: 1px solid darken($echo-player, 5);
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);

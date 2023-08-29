@@ -9,7 +9,7 @@ function BottomNav() {
           <div
             className={`${styles.item} ${isActive ? styles.active : ""} ${isPending ? styles.pending : ""}`}>
             <i className="bi bi-house"></i>
-            Home
+            {/*Home*/}
           </div>
         )}
       </NavLink>
@@ -19,7 +19,7 @@ function BottomNav() {
           <div
             className={`${styles.item} ${isActive ? styles.active : ""} ${isPending ? styles.pending : ""}`}>
             <i className="bi bi-search"></i>
-            Explore
+            {/*Explore*/}
           </div>
         )}
       </NavLink>
@@ -29,7 +29,7 @@ function BottomNav() {
           <div
             className={`${styles.item} ${isActive ? styles.active : ""} ${isPending ? styles.pending : ""}`}>
             <i className="bi bi-person"></i>
-            Dashboard
+            {/*Dashboard*/}
           </div>
         )}
       </NavLink>

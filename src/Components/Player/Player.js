@@ -1,5 +1,6 @@
 import React, {createContext, useContext, useEffect, useRef, useState} from 'react';
 import styles from './player.module.scss';
+
 const PlayerContext = createContext();
 
 
@@ -71,7 +72,7 @@ const Player = () => {
 
   const getCurrentSongTitle = () => {
     if (song) {
-      return <a className={styles.songTitle} href={song.external_urls.spotify} target="_blank">{song.name}</a>;
+      return <a className={styles.song} href={song.external_urls.spotify} target="_blank">{song.name}</a>;
     }
 
     return "no song";
@@ -121,36 +122,38 @@ const Player = () => {
 
   return (
     <>
-      <div className={styles.playerContainer}>
-        <div className={styles.playerLeft}>
-          <img src={getAlbumImageSrc()} onClick={() => setExpanded(!expanded)}/>
-          <div className="d-flex flex-column align-content-center">
-          <span className={styles.songTitle}>
+      <div className={styles.container}>
+        <div className={styles.player}>
+          <div className={styles.playerLeft}>
+            <img src={getAlbumImageSrc()} onClick={() => setExpanded(!expanded)}/>
+            <div className="d-flex flex-column align-content-center">
+          <span className={styles.song}>
             {getCurrentSongTitle()}
           </span>
-            <span className={styles.songArtist}>{getCurrentSongArtist()}</span>
-          </div>
-        </div>
-
-
-        <div className={styles.playerCenter}>
-          {song &&
-            <div className={styles.playerControls}>
-              {isPlaying ? <Pause/> : <Play/>}
+              <span className={styles.artist}>{getCurrentSongArtist()}</span>
             </div>
-          }
-        </div>
+          </div>
 
-        <div className={styles.playerRight + ` text-center align-self-center`}>
-          <div style={{width: "60%", marginLeft: "auto", marginRight: "1.0rem"}}>
-            <small>volume</small>
-            <input type="range"
-                   className="form-range"
-                   value={volume}
-                   onChange={e => setVolume(e.target.value)}
-                   min={0} max={1}
-                   step={0.001}
-            />
+
+          <div className={styles.playerCenter}>
+            {song &&
+              <div className={styles.controls}>
+                {isPlaying ? <Pause/> : <Play/>}
+              </div>
+            }
+          </div>
+
+          <div className={styles.playerRight + ` text-center align-self-center`}>
+            <div style={{width: "60%", marginLeft: "auto", marginRight: "1.0rem"}}>
+              <small>volume</small>
+              <input type="range"
+                     className="form-range"
+                     value={volume}
+                     onChange={e => setVolume(e.target.value)}
+                     min={0} max={1}
+                     step={0.001}
+              />
+            </div>
           </div>
         </div>
       </div>

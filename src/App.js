@@ -18,7 +18,7 @@ export default function App() {
   return (
     <AuthProvider>
       <div className="main-content">
-        <div className="app-wrapper d-flex flex-column" style={{height: '100vh'}}>
+        <div className="app-wrapper d-flex flex-column">
           <RoutesComponent/>
         </div>
       </div>
