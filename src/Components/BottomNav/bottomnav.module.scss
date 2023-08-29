@@ -1,0 +1,28 @@
+@import '../../variables';
+
+.bottomNavigation {
+  background-color: darken($echo-player, 2);
+  height: 70px;
+  width: 100vw;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  //justify-content: space-around;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: grey;
+
+  i {
+    font-size: 1.5rem;
+  }
+}
+
+.active {
+  color: #000;
+}
