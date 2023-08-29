@@ -1,6 +1,6 @@
-import Header from "../Components/Header";
 import {useRouteError} from "react-router";
 import {Col, Container, Row} from "react-bootstrap";
+import Layout from "../Components/Layout/Layout";
 
 
 function ErrorPage() {
@@ -8,8 +8,7 @@ function ErrorPage() {
   console.dir(error)
 
   return (
-    <>
-      <Header/>
+    <Layout>
       <Container>
         <Row>
           <Col>
@@ -20,7 +19,7 @@ function ErrorPage() {
           </Col>
         </Row>
       </Container>
-    </>
+    </Layout>
   )
 }
 

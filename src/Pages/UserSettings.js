@@ -1,11 +1,10 @@
 import React, {useEffect, useRef, useState} from "react";
-import Header from "../Components/Header";
 import {useLoaderData} from "react-router";
-import UserDashboardView from "../Components/UserDashboardView";
-import {Button, ButtonGroup, Col, Container, Form, FormControl, FormGroup, FormText, Row} from "react-bootstrap";
-import {useAuth} from "../Components/Auth";
+import {Button, Col, Container, Form, FormControl, FormGroup, FormText, Row} from "react-bootstrap";
 import {API_REFRESHUSERDATA, API_SETTINGS, API_UPDATEMYMAGAZINE} from "../api";
+import {useAuth} from "../Components/Auth/Auth";
 import {toast} from "react-toastify";
+import Layout from "../Components/Layout/Layout";
 
 export default function UserSettings() {
   const {token, isLoggedIn, logout, profile} = useAuth();
@@ -97,8 +96,7 @@ export default function UserSettings() {
   };
 
   return (
-    <div>
-      <Header/>
+    <Layout>
       <Container>
         <Row>
           <Col>
@@ -111,7 +109,8 @@ export default function UserSettings() {
               </FormGroup>
               <FormGroup>
                 <FormText>User Bio</FormText>
-                <FormControl as="textarea" value={bio} placeholder={bio || "enter bio here la.."} onChange={e => setBio(e.target.value)} aria-multiline={true} style={{maxWidth: "350px"}}/>
+                <FormControl as="textarea" value={bio} placeholder={"Enter a brief bio here..."}
+                             onChange={e => setBio(e.target.value)} aria-multiline={true} style={{maxWidth: "350px"}}/>
               </FormGroup>
               <Button className="me-2 mt-2" variant="dark" onClick={e => saveSettings(e)}>Save</Button>
             </Form>
@@ -122,6 +121,6 @@ export default function UserSettings() {
           </Col>
         </Row>
       </Container>
-    </div>
+    </Layout>
   )
 }

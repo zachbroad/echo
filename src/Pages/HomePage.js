@@ -1,12 +1,10 @@
-import React, {useEffect, useState} from "react";
-import Header from "../Components/Header";
+import React from "react";
 import {Button, Col, Container, Row} from "react-bootstrap";
-import TrackDisplayWithGridAndList from "../Components/TrackDisplayWithGridAndList";
-import {useAuth} from "../Components/Auth";
 import {Link} from "react-router-dom";
+import {redirectAndAuthWithSpotify} from "../api";
+import {useAuth} from "../Components/Auth/Auth";
+import Layout from "../Components/Layout/Layout";
 import './HomePage.scss';
-import {generateCodeChallenge, generateRandomString} from "../util";
-import {API_AUTH, redirectAndAuthWithSpotify} from "../api";
 
 function HomePageConnectSpotify() {
 
@@ -48,12 +46,11 @@ export default function HomePage() {
   const {token, isLoggedIn, logout, profile} = useAuth();
 
   return (
-    <>
-      <Header/>
+    <Layout>
       {isLoggedIn ?
         <HomePageLoggedIn/> :
         <HomePageConnectSpotify/>
       }
-    </>
+    </Layout>
   )
 }

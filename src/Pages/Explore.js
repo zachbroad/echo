@@ -1,12 +1,11 @@
-import {Card, Col, Container, Row} from "react-bootstrap";
-import React, {useEffect, useState} from "react";
-import {API_USERS} from "../api";
-import {useAuth} from "../Components/Auth";
-import Header from "../Components/Header";
-import Loading from "../Components/Loading";
-import AlbumArtworkNode from "../Components/AlbumArtworkNode";
+import {Container, Row} from "react-bootstrap";
+import React from "react";
+import LoadingPage from "./LoadingPage";
+import AlbumArtworkNode from "../Components/AlbumArtworkNode/AlbumArtworkNode";
 import {Link} from "react-router-dom";
 import {useLoaderData} from "react-router";
+
+import Layout from "../Components/Layout/Layout";
 import './Explore.scss';
 
 function ExploreItem({user}) {
@@ -21,7 +20,7 @@ function ExploreItem({user}) {
       <div className="explore-item__header">
         <Link to={`/explore/${user.username}/`}>{user.username}</Link>
       </div>
-      <div className="track-grid smallest">
+      <div className="trackGrid smallest">
         {user.recent.items.slice(0, 16).map(s => (
           <AlbumArtworkNode track={s.track} key={s.track.id}/>
         ))}
@@ -45,12 +44,11 @@ export default function Explore() {
   )
 
   return (
-    <div>
-      <Header/>
+    <Layout>
       <Container>
-        {users ? <ViewUsersLoaded/> : <Loading/>}
+        {users ? <ViewUsersLoaded/> : <LoadingPage/>}
         {error ? <p>{error}</p> : null}
       </Container>
-    </div>
+    </Layout>
   )
 }

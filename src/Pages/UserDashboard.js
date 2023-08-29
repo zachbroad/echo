@@ -1,11 +1,12 @@
-import './UserDashboard.scss'
-import Header from "../Components/Header";
 import React from "react";
 import {Container} from "react-bootstrap";
-import {useAuth} from '../Components/Auth';
-import UserDashboardView from "../Components/UserDashboardView";
 import {useLoaderData, useNavigation} from "react-router";
-import Loading from "../Components/Loading";
+import {useAuth} from "../Components/Auth/Auth";
+import LoadingPage from "./LoadingPage";
+import Layout from "../Components/Layout/Layout";
+import UserDashboardView from "../Components/UserDashboard/UserDashboardView";
+
+import './UserDashboard.scss'
 
 export default function UserDashboard() {
   const {token, isLoggedIn, logout, myProfile} = useAuth();
@@ -23,10 +24,9 @@ export default function UserDashboard() {
   );
 
   return (
-    <div>
-      <Header/>
-      {navigation.state == "loading" && <Loading />}
+    <Layout>
+      {navigation.state === "loading" && <LoadingPage/>}
       {!isLoggedIn ? <ViewWhenUnauth/> : <UserDashboardView data={data}/>}
-    </div>
+    </Layout>
   )
 }

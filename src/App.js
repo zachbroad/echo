@@ -1,17 +1,40 @@
 import React from "react";
-import {Route, Routes} from "react-router-dom";
+
+
+// Global styling
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.scss'
 import './App.scss';
-import HomePage from "./Pages/HomePage";
-import UserDashboard from "./Pages/UserDashboard";
-import Explore from "./Pages/Explore";
+
+// Providers
+import {AuthProvider} from "./Components/Auth/Auth";
+
+// Toaster oven
+import {ToastContainer} from "react-toastify";
+import RoutesComponent from "./Router";
+
 
 export default function App() {
-  // return (
-  //   // <Routes>
-  //   //   <Route path="/" element={<HomePage />} />
-  //   //   <Route path="/users" element={<UserList />} />
-  //   //   <Route path="/dashboard" element={<UserDashboard />} />
-  //   // </Routes>
-  // )
+  return (
+    <AuthProvider>
+      <div className="main-content">
+        <div className="app-wrapper d-flex flex-column" style={{height: '100vh'}}>
+          <RoutesComponent/>
+        </div>
+      </div>
+      {/* Same as */}
+      <ToastContainer
+        position="top-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </AuthProvider>
+  )
 }

@@ -1,7 +1,38 @@
-import {useEffect} from "react";
 import {Tooltip as ReactTooltip} from "react-tooltip";
-import {usePlayer} from "./Player";
-import './AlbumArtworkNode.scss';
+import styles from './albumartwork.module.scss';
+import {usePlayer} from "../Player/Player";
+
+export default function AlbumArtworkNode({track}) {
+  const albumArtwork = track.album.images[0].url;
+  const {song, isPlaying, onPlay, onPause, setPlayerSong, audioRef} = usePlayer();
+
+  function play() {
+    setPlayerSong(track);
+  }
+
+  return (
+    <>
+      <div className={styles.albumNode} onClick={() => play()} style={{cursor: "pointer"}}>
+        <img
+          src={albumArtwork}
+          // height={150}
+          // width={150}
+          alt={track.name}
+        />
+        <ReactTooltip
+          anchorId={track.id}
+          data-tooltip-id={track.id}
+          place={"bottom"}
+          clickable
+          style={{"--rt-opacity": "1"}}
+        >
+          <b>{track.name}</b> by <i>{track.artists[0].name}</i>
+        </ReactTooltip>
+      </div>
+    </>
+  )
+}
+
 
 /*
     "album": {
@@ -79,33 +110,3 @@ import './AlbumArtworkNode.scss';
     "uri": "spotify:track:6rL5acsWfNx1mM3SlfPstu"
  *
  */
-export default function AlbumArtworkNode({track}) {
-  const albumArtwork = track.album.images[0].url;
-  const {isPlaying, onPlay, onPause, setPlayerSong} = usePlayer();
-
-  function play() {
-    setPlayerSong(track);
-  }
-
-  return (
-    <>
-      <div className="album-node" onClick={() => play()} style={{cursor: "pointer"}}>
-        <img
-          src={albumArtwork}
-          // height={150}
-          // width={150}
-          alt={track.name}
-        />
-        <ReactTooltip
-          anchorId={track.id}
-          data-tooltip-id={track.id}
-          place={"bottom"}
-          clickable
-          style={{"--rt-opacity": "1"}}
-        >
-          <b>{track.name}</b> by <i>{track.artists[0].name}</i>
-        </ReactTooltip>
-      </div>
-    </>
-  )
-}
