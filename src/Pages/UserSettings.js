@@ -5,6 +5,7 @@ import {API_REFRESHUSERDATA, API_SETTINGS, API_UPDATEMYMAGAZINE} from "../api";
 import {useAuth} from "../Components/Auth/Auth";
 import {toast} from "react-toastify";
 import Layout from "../Components/Layout/Layout";
+import {Link} from "react-router-dom";
 
 export default function UserSettings() {
   const {token, isLoggedIn, logout, profile} = useAuth();
@@ -95,6 +96,7 @@ export default function UserSettings() {
     }
   };
 
+  // TODO: MAKE MODAL
   return (
     <Layout>
       <Container>
@@ -112,6 +114,7 @@ export default function UserSettings() {
                 <FormControl as="textarea" value={bio} placeholder={"Enter a brief bio here..."}
                              onChange={e => setBio(e.target.value)} aria-multiline={true} style={{maxWidth: "350px"}}/>
               </FormGroup>
+              <Link to={'/dashboard/'} className="me-2 mt-2 btn btn-outline-danger" variant="dark">Cancel</Link>
               <Button className="me-2 mt-2" variant="dark" onClick={e => saveSettings(e)}>Save</Button>
             </Form>
             <hr/>

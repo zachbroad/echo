@@ -7,26 +7,34 @@ import Layout from "../Components/Layout/Layout";
 import UserDashboardView from "../Components/UserDashboard/UserDashboardView";
 
 import './UserDashboard.scss'
+import UserDashboardLoadingPage from "./UserDashboardLoadingPage";
 
 export default function UserDashboard() {
-  const {token, isLoggedIn, logout, myProfile} = useAuth();
-  const {data, profile} = useLoaderData();
+  const {token, isLoggedIn, logout, myProfile, isLoggingIn} = useAuth();
+  const {data, profile} = useLoaderData(null, null);
   const navigation = useNavigation();
 
+
   const ViewWhenUnauth = () => (
-    <div>
+    <Layout>
       <Container>
         <h3>
           You are not logged in
         </h3>
       </Container>
-    </div>
+    </Layout>
   );
 
+  if (isLoggingIn || (data.tracks_long == undefined && !isLoggedIn)) {
+    return <UserDashboardLoadingPage/>;
+  }
+
+  if (!isLoggedIn) {
+    return <ViewWhenUnauth/>;
+  }
+
   return (
-    <Layout>
-      {navigation.state === "loading" && <LoadingPage/>}
-      {!isLoggedIn ? <ViewWhenUnauth/> : <UserDashboardView data={data}/>}
-    </Layout>
+    <UserDashboardView data={data}/>
   )
+
 }

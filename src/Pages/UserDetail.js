@@ -7,10 +7,6 @@ export default function UserDetail() {
   const [userData, error] = useLoaderData();
 
   return (
-    <Layout>
-      {userData &&
-        <UserDashboardView data={userData}/>
-      }
-    </Layout>
+    <UserDashboardView data={userData}/>
   )
 }

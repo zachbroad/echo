@@ -1,43 +1,33 @@
 import {Container, Dropdown, DropdownButton, Nav, Navbar} from "react-bootstrap";
 import {redirectAndAuthWithSpotify} from "../../api.js";
 import {useAuth} from "../Auth/Auth";
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import styles from './header.module.scss';
 
 export default function Header() {
   const {token, isLoggedIn, logout, profile} = useAuth();
 
-
-  const reflectionStyle = {
-    transform: 'scaleX(-1)', // Flip horizontally
-    color: 'rgba(0, 0, 0, 0.1)', // Lighter color for reflection
-    display: 'inline-block',
-    marginLeft: '0.5rem',
-    margin: 0,
-    fontWeight: 900,
-  };
-
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className={`navbar-dark ${styles.header}`}>
       <Container>
-        <Link className="navbar-brand" to="/">
+        <Link className="" to="/">
         <span style={{display: "flex", flexDirection: "row", alignItems: "center"}}>
-          <h1 style={{margin: 0, fontWeight: 900}} className="font-weight-bold">ECHO</h1>
-          <h1 style={reflectionStyle} className="font-weight-bold">ECHO</h1>
+          <h1 style={{margin: 0, fontWeight: 900}} className={styles.logoMain}>ECHO</h1>
+          <h1 className={styles.logoSecondary}>ECHO</h1>
         </span>
         </Link>
-        <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-        <Navbar.Collapse id="basic-navbar-nav">
+        {/*<Navbar.Toggle aria-controls="basic-navbar-nav" className={"d-none d-sm-none d-md-block"}/>*/}
+        <Navbar.Collapse id="basic-navbar-nav" className={"d-sm-none"}>
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/">Home</Nav.Link>
-            <Nav.Link as={Link} to="/explore/">Explore</Nav.Link>
-            <Nav.Link as={Link} to="/dashboard/">Dashboard</Nav.Link>
+            <Nav.Link as={NavLink} to="/">Home</Nav.Link>
+            <Nav.Link as={NavLink} to="/explore/">Explore</Nav.Link>
+            <Nav.Link as={NavLink} to="/dashboard/">Dashboard</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <div className="ml-auto">
-          {isLoggedIn ? (
+          {profile !== null ? (
             <DropdownButton variant="outline-secondary" id="dropdown-basic-button"
-                            title={`${profile.display_name}`}>
+                            title={`${profile?.display_name}`}>
               <Dropdown.Item as={Link} to={"/dashboard/"}>
                 My dashboard
               </Dropdown.Item>

@@ -1,8 +1,13 @@
 $echo-primary: #000000;
 $echo-secondary: rgba(0, 0, 0, 0.1); // Lighter color for reflection
 
-$echo-player: rgba(244, 244, 244, 1);
+//$echo-player: rgba(244, 244, 244, 1);
+$echo-player: #191414;
+//$echo-light
+
 $echo-header: #f8f9fa;
+
+$echo-player-secondary: darken($echo-header, 1);
 
 $echo-blue: darken(lightblue, 10);
 

@@ -22,3 +22,13 @@ export async function generateCodeChallenge(codeVerifier) {
 
   return base64encode(digest);
 }
+
+export function getAllArtists(artists) {
+  var artistNames = artists.map(artist => artist.name);
+  return artistNames.join(", ");
+}
+
+
+export function getAlbumArtworkUrl(track) {
+  return track != null ? track.album.images[0].url : null;
+}

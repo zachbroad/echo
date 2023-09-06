@@ -2,13 +2,13 @@ import Header from "../Header/Header";
 import BottomNav from "../BottomNav/BottomNav";
 import Player from "../Player/Player";
 
-const Layout = ({children}) => (
+const Layout = ({children, className=null}) => (
   <>
     <Header/>
-    <div style={{minHeight: "100vh"}}>
+    <div className={className} style={{minHeight: "100vh"}}>
       {children}
     </div>
-    <div className="sticky-bottom">
+    <div className="sticky-bottom mt-auto">
       <Player/>
       <BottomNav/>
     </div>

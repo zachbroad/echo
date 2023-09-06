@@ -7,7 +7,7 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x:initial;
+  //overflow-x:initial;
 }
 
 code {
@@ -17,4 +17,16 @@ code {
 
 a {
   text-decoration: none;
+}
+
+
+
+// Bootstrap fix sticky footer being pushed down by dropdowns
+nav ul li {
+  position: relative;
+}
+
+nav ul ul {
+  position: absolute;
+  width: 100%;
 }

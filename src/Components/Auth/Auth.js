@@ -7,12 +7,14 @@ export const AuthProvider = ({children}) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(!!token);
   const [profile, setProfile] = useState(JSON.parse(localStorage.getItem("profile")));
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   // const [profile, setProfile] = useState(localStorage.getItem("profile"));
 
   const logout = () => {
     setIsLoggedIn(false);
     setToken(null);
     setProfile(null);
+    setIsLoggingIn(false);
     localStorage.removeItem("token");
     localStorage.removeItem("profile");
   }
@@ -57,22 +59,29 @@ export const AuthProvider = ({children}) => {
         try {
           const response = await fetch(CALLBACK_URL);
           if (!response.ok) throw new Error('HTTP status: ' + response.status)
+          setIsLoggingIn(true);
 
           const data = await response.json();
           console.log(data.token)
           localStorage.setItem("token", data.token);
-
           await setToken(data.token);
           await getUserProfile(data.token);
-
           setIsLoggedIn(true);
+          setIsLoggingIn(false);
         } catch (e) {
           // toast("Error logging in! " + e);
           console.error(e);
         }
       }
 
-      getToken();
+      setIsLoggingIn(true);
+      getToken().then(() => {
+        setIsLoggedIn(true);
+        setIsLoggingIn(false);
+      }).catch(() => {
+        setIsLoggedIn(false);
+        setIsLoggingIn(false);
+      });
     }
 
   }, []); // Add router.query as a dependency to the useEffect hook
@@ -82,7 +91,7 @@ export const AuthProvider = ({children}) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{token, isLoggedIn, logout, profile}}>
+    <AuthContext.Provider value={{token, isLoggedIn, logout, profile, isLoggingIn}}>
       {children}
     </AuthContext.Provider>
   );

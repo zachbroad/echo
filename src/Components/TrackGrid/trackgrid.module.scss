@@ -29,11 +29,11 @@
 
 
   @include media-breakpoint-up(sm) {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 
   @include media-breakpoint-up(md) {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
   @include media-breakpoint-up(lg) {
@@ -41,13 +41,14 @@
   }
 
   @include media-breakpoint-up(xl) {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 
-.trackGrid.smaller {
+.smaller {
   grid-template-columns: repeat(4, 1fr) !important;
 }
+
 
 .trackGrid.smallest {
   grid-template-columns: repeat(2, 1fr) !important;
@@ -58,4 +59,21 @@
     grid-row: span 2; // Make the first item span 2 rows
     grid-column: span 2; // Make the first item span 2 columns
   }
+}
+
+.trackGridHome {
+  position:absolute;
+
+  top: 0;
+  left:0;
+  z-index: -999;
+  opacity: .5;
+  background-color: black;
+  background-blend-mode: color-burn;
+  overflow-y: hidden;
+  max-height: 100vh;
+}
+
+.hp {
+  grid-template-columns: repeat(4, 1fr) !important;
 }

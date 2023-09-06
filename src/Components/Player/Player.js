@@ -1,5 +1,6 @@
 import React, {createContext, useContext, useEffect, useRef, useState} from 'react';
 import styles from './player.module.scss';
+import {SpotifyLogoBlack, SpotifyLogoWhite} from "../SpotifyLogo/SpotifyLogo";
 
 const PlayerContext = createContext();
 
@@ -125,23 +126,34 @@ const Player = () => {
       <div className={styles.container}>
         <div className={styles.player}>
           <div className={styles.playerLeft}>
-            <img src={getAlbumImageSrc()} onClick={() => setExpanded(!expanded)}/>
+            <div className={"d-flex flex-column"}>
+              <img src={getAlbumImageSrc()} onClick={() => setExpanded(!expanded)}/>
+            </div>
             <div className="d-flex flex-column align-content-center">
-          <span className={styles.song}>
-            {getCurrentSongTitle()}
-          </span>
+              <span className={styles.song}>
+                <SpotifyLogoWhite/>
+                {getCurrentSongTitle()}
+              </span>
               <span className={styles.artist}>{getCurrentSongArtist()}</span>
+              <span className={styles.album}>{getCurrentSongAlbum()}</span>
             </div>
           </div>
-
 
           <div className={styles.playerCenter}>
             {song &&
               <div className={styles.controls}>
+                {song != null &&
+                  <a target={"_blank"} href={song?.artists[0].external_urls.spotify} className={styles.spotifyButton}>
+                    OPEN SPOTIFY
+                  </a>
+                }
                 {isPlaying ? <Pause/> : <Play/>}
               </div>
             }
           </div>
+
+          {/*<div style={{position: "absolute", left: 4, top: 2}}>*/}
+          {/*</div>*/}
 
           <div className={styles.playerRight + ` text-center align-self-center`}>
             <div style={{width: "60%", marginLeft: "auto", marginRight: "1.0rem"}}>

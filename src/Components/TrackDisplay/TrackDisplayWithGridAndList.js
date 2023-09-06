@@ -6,13 +6,13 @@ import Loading from "../Loading/Loading";
 import styles from './trackdisplay.module.scss';
 
 
-function TrackDisplayWithGridAndList({data}) {
+function TrackDisplayWithGridAndList({data, limit=20}) {
   return (
     <>
       {
         data ? (
           <div className={styles.trackDisplayContainer}>
-            <TrackGrid tracks={data}/>
+            <TrackGrid tracks={data} limit={limit}/>
           </div>
         ) : (
           <Loading />

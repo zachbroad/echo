@@ -1,12 +1,8 @@
 import React from 'react';
+import {getAllArtists} from "../../util";
 
 
 function TrackSongList({tracks}) {
-  function getAllArtists(artists) {
-    var artistNames = artists.map(artist => artist.name);
-    return artistNames.join(", ");
-  }
-
   return (
     <div style={{overflowY: "scroll", maxHeight: "845px"}}>
       <ol>

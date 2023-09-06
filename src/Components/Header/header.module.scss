@@ -4,3 +4,23 @@
 //  background-color: darken($echo-red, 10);
 //  border: 1px solid darken($echo-red, 20);
 //}
+
+
+.header {
+  background-color: $echo-player;
+}
+
+.logoMain {
+  font-weight: 900;
+
+  color: $echo-header;
+}
+
+.logoSecondary {
+  transform: scaleX(-1); // Flip horizontally
+  color: darken($echo-header, 25);
+  display: inline-block;
+  //margin-left: 0.5rem;
+  margin: 0;
+  font-weight: bold;
+}

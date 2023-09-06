@@ -1,0 +1,20 @@
+
+
+.hero {
+  background-color: white;
+  padding: 3rem;
+  //width: 40%;
+  margin: 0 auto;
+}
+
+.homepageContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+  max-height: 100vh;
+  overflow:hidden;
+}

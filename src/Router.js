@@ -10,12 +10,15 @@ import HomePage from "./Pages/HomePage";
 import UserDashboard from "./Pages/UserDashboard";
 import LoadingPage from "./Pages/LoadingPage";
 import ErrorPage from "./Pages/ErrorPage";
-import Explore from "./Pages/Explore";
+import Explore from "./Pages/Explore/Explore";
 import UserDetail from "./Pages/UserDetail";
 import UserSettings from "./Pages/UserSettings";
 
 import Player, {PlayerProvider} from "./Components/Player/Player";
 import BottomNav from "./Components/BottomNav/BottomNav";
+import UserDashboardLoadingPage from "./Pages/UserDashboardLoadingPage";
+import EULA from "./Pages/EULA";
+import PrivacyPolicy from "./Pages/PrivacyPolicy";
 
 function RoutesComponent({children}) {
   const {token, isLoggedIn, logout, profile} = useAuth();
@@ -24,6 +27,18 @@ function RoutesComponent({children}) {
     {
       path: "/",
       element: <HomePage/>
+    },
+    {
+      path: "/loading/",
+      element: <UserDashboardLoadingPage/>
+    },
+    {
+      path: "/eula/",
+      element: <EULA/>
+    },
+    {
+      path: "/privacy/",
+      element: <PrivacyPolicy/>
     },
     {
       path: "/dashboard/",
@@ -48,7 +63,7 @@ function RoutesComponent({children}) {
           "profile": userProfile
         };
       },
-      pending: <LoadingPage/>,
+      pending: <UserDashboardLoadingPage/>,
       errorElement: <ErrorPage/>
     },
     {

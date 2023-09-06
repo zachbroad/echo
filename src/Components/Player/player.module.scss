@@ -12,12 +12,11 @@
   margin-top: auto;
   width: 100vw;
   background-color: $echo-player;
-  border: 1px solid darken($echo-player, 10);
+  border: 1px solid darken($echo-player, 3);
   border-radius: 0.5rem;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05); /* Add a subtle shadow on hover */
   //box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07), 0 1px 2px rgba(0, 0, 0, 0.05);
   //box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03), inset 0 0px 0px rgba(0, 0, 0, 0.01);
-
 
 
   opacity: 1;
@@ -29,13 +28,16 @@
   align-items: center;
   align-content: center;
 
+
+  // Change color of player text (songs and stuff are links)
+  color: invert($echo-player, 100);
   a {
-    color: black;
+    color: invert($echo-player, 100);
   }
 
   svg {
-    fill: black;
-    color: black;
+    fill: $echo-player-secondary;
+    color: $echo-player-secondary;
   }
 
   @include media-breakpoint-up(md) {
@@ -48,10 +50,17 @@
     display: flex;
     align-items: center;
     align-content: center;
+    span {
+      margin: 0;
+      padding: 0;
+    }
+    span, p, a {
+      font-size: 0.80rem;
+    }
 
     img {
-      height: 40px;
-      width: 40px;
+      height: 58px;
+      width: 58px;
       margin-right: 0.5rem;
     }
 
@@ -59,11 +68,16 @@
       font-weight: bold;
       margin-bottom: 0;
       padding-bottom: 0;
+      font-size: 1.1rem;
     }
 
     .artist {
-
+      font-weight: bold;
     }
+
+    .album {
+    }
+
 
   }
 
@@ -109,7 +123,23 @@
 
 
 .controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  a {
+    margin-right: 0.5rem;
+  }
   svg:hover {
     transform: scale(1.05);
   }
+}
+
+.spotifyButton{
+  background-color: #1db954;
+  border: none;
+  color: #FFF;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: bold;
 }

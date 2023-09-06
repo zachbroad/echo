@@ -1,9 +1,7 @@
-import Header from "../Components/Header/Header";
+import Layout from "../Components/Layout/Layout";
 
 export default function LoadingPage() {
   return (
-    <div>
-      <Header />
-      <h2>Loading...</h2>
-    </div>
-  ) }
+    <h2>Loading...</h2>
+  )
+}
