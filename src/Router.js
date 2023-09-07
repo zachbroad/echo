@@ -70,10 +70,16 @@ function RoutesComponent({children}) {
       path: "/explore/",
       element: <Explore/>,
       loader: async ({request, params}) => {
+        let headers = null;
+        if (!token == null) {
+          headers =  {
+            "Authorization": `Token ${token}`
+          }
+        } else {
+          headers = null;
+        }
         const response = await fetch(API_USERS, {
-            headers: {
-              "Authorization": `Token ${token}`
-            }
+            headers: {...headers}
           }
         );
         const jsonData = await response.json();
@@ -91,14 +97,23 @@ function RoutesComponent({children}) {
       path: "/explore/:username/",
       element: <UserDetail/>,
       loader: async ({request, params}) => {
-        const response = await fetch(API_USERDETAIL(params.username), {
-          headers: {
+        let headers = null;
+        if (!token == null) {
+          headers =  {
             "Authorization": `Token ${token}`
           }
+        } else {
+          headers = null;
+        }
+        const response = await fetch(API_USERDETAIL(params.username), {
+          headers: {...headers}
         });
+        console.dir(response);
         const userDetailData = await response.json();
 
         if (!response.ok) {
+          console.log('Error')
+          console.dir(response);
           return [null, `${response.status} - ${response.statusText}`]
         }
 

@@ -16,6 +16,7 @@ function ErrorPage() {
             <code>
               {error.stack}
             </code>
+            <code>{error.toString()}</code>
           </Col>
         </Row>
       </Container>

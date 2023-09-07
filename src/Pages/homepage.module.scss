@@ -1,10 +1,13 @@
-
+@import '../variables';
 
 .hero {
-  background-color: white;
+  background-color: $echo-foreground;
+  border: 1px solid darken($echo-foreground, 10);
   padding: 3rem;
   //width: 40%;
   margin: 0 auto;
+  color: black;
+  border-radius: 0.5rem;
 }
 
 .homepageContainer {
@@ -16,5 +19,5 @@
   align-content: center;
   height: 100vh;
   max-height: 100vh;
-  overflow:hidden;
+  overflow: hidden;
 }

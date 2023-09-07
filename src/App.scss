@@ -8,6 +8,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   //overflow-x:initial;
+  //background-color: #f5f5f5;
+  background-color: $echo-background;
+  color: $echo-foreground;
 }
 
 code {

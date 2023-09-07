@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useEffect, useRef, useState} from 'react';
 import styles from './player.module.scss';
-import {SpotifyLogoBlack, SpotifyLogoWhite} from "../SpotifyLogo/SpotifyLogo";
+import {SpotifyLogoBlack, SpotifyLogoGreen, SpotifyLogoWhite} from "../SpotifyLogo/SpotifyLogo";
 
 const PlayerContext = createContext();
 
@@ -131,22 +131,28 @@ const Player = () => {
             </div>
             <div className="d-flex flex-column align-content-center">
               <span className={styles.song}>
-                <SpotifyLogoWhite/>
                 {getCurrentSongTitle()}
               </span>
-              <span className={styles.artist}>{getCurrentSongArtist()}</span>
-              <span className={styles.album}>{getCurrentSongAlbum()}</span>
+              <span className={styles.artist}>
+                {getCurrentSongArtist()}
+              </span>
+              <span className={styles.album}>
+                {getCurrentSongAlbum()}
+              </span>
             </div>
+            <div style={{position: "absolute", right: -3, top: -3}}>
+              <SpotifyLogoGreen/>
+            </div>
+            {/*{song != null &&*/}
+            {/*  <a target={"_blank"} href={song?.external_urls.spotify} className={styles.spotifyButton}>*/}
+            {/*    OPEN SPOTIFY*/}
+            {/*  </a>*/}
+            {/*}*/}
           </div>
 
           <div className={styles.playerCenter}>
             {song &&
               <div className={styles.controls}>
-                {song != null &&
-                  <a target={"_blank"} href={song?.artists[0].external_urls.spotify} className={styles.spotifyButton}>
-                    OPEN SPOTIFY
-                  </a>
-                }
                 {isPlaying ? <Pause/> : <Play/>}
               </div>
             }

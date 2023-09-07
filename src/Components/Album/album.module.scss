@@ -10,10 +10,16 @@
 
 .exploreItemHeader {
   display: flex;
-  background-color: $echo-header;
-  border-bottom: 1px solid darken($echo-header, 10);
+  background-color: lighten($echo-background, 15);
+  border-bottom: 1px solid darken($echo-background, 50);
   padding: 0.7rem 0.7rem;
   justify-content: space-between;
+  a {
+    color: $echo-foreground;
+  }
+  a:hover {
+    color: $echo-accent;
+  }
 }
 
 .cardContent {
