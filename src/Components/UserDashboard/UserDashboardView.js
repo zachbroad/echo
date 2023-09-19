@@ -42,10 +42,7 @@ const UserDashboardView = ({data}) => {
     return (
       <div className="d-flex flex-column align-items-center align-content-center my-3 text-center">
         <img alt={`${profile.display_name} on Echo`}
-             height={112}
-             width={112}
-             className="d-inline rounded-circle"
-             src={profile.images[1].url}/>
+             height={112} width={112} className="d-inline rounded-circle mb-2" src={profile.images[1].url}/>
         <div className="d-flex flex-column">
           <h5 className="p-0 m-0 mr-auto align-content-center">
             @{profile.display_name}
