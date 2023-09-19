@@ -25,7 +25,7 @@ export default function UserDashboard() {
     </Layout>
   );
 
-  if (isLoggingIn || (data.tracks_long == undefined && !isLoggedIn)) {
+  if (isLoggingIn || (data.tracks_long === undefined && isLoggedIn)) {
     return <UserDashboardLoadingPage/>;
   }
 

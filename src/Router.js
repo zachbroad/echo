@@ -29,10 +29,6 @@ function RoutesComponent({children}) {
       element: <HomePage/>
     },
     {
-      path: "/loading/",
-      element: <UserDashboardLoadingPage/>
-    },
-    {
       path: "/eula/",
       element: <EULA/>
     },
@@ -143,11 +139,6 @@ function RoutesComponent({children}) {
     <PlayerProvider>
       <RouterProvider router={router}>
         {children}
-        {/*TODO: ADD TO LAYOUT.JS*/}
-        <div className={"sticky-bottom"}>
-          <Player/>
-          <BottomNav/>
-        </div>
       </RouterProvider>
     </PlayerProvider>
   );

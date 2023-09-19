@@ -3,7 +3,7 @@
 .bottomNavigation {
   background-color: darken($echo-player, 2);
   height: 51px;
-  width: 100vw;
+  width: 100%;
   border-top: 1px solid darken($echo-player, 5);
 
   display: grid;
@@ -11,6 +11,8 @@
   //justify-content: space-around;
   align-items: center;
   text-transform: uppercase;
+  padding: 0;
+  margin: 0;
 }
 
 .item {

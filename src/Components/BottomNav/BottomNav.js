@@ -6,8 +6,7 @@ function BottomNav() {
     <div className={styles.bottomNavigation}>
       <NavLink to={"/"}>
         {({ isActive, isPending }) => (
-          <div
-            className={`${styles.item} ${isActive ? styles.active : ""} ${isPending ? styles.pending : ""}`}>
+          <div className={`${styles.item} ${isActive ? styles.active : ""} ${isPending ? styles.pending : ""}`}>
             <i className="bi bi-house"></i>
             {/*Home*/}
           </div>
@@ -16,8 +15,7 @@ function BottomNav() {
 
       <NavLink to={"/explore/"}>
         {({ isActive, isPending }) => (
-          <div
-            className={`${styles.item} ${isActive ? styles.active : ""} ${isPending ? styles.pending : ""}`}>
+          <div className={`${styles.item} ${isActive ? styles.active : ""} ${isPending ? styles.pending : ""}`}>
             <i className="bi bi-search"></i>
             {/*Explore*/}
           </div>
@@ -26,8 +24,7 @@ function BottomNav() {
 
       <NavLink to={"/dashboard/"}>
         {({ isActive, isPending }) => (
-          <div
-            className={`${styles.item} ${isActive ? styles.active : ""} ${isPending ? styles.pending : ""}`}>
+          <div className={`${styles.item} ${isActive ? styles.active : ""} ${isPending ? styles.pending : ""}`}>
             <i className="bi bi-person"></i>
             {/*Dashboard*/}
           </div>

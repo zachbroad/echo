@@ -106,23 +106,22 @@ const UserDashboardView = ({data}) => {
         </Row>
       </Container>
 
-      <Container>
-
-        <h4 className="py-2 px-3">Recently listening to...</h4>
+      <Container style={{marginBottom: "2rem"}}>
+        <h4 className="py-2">Recently listening to...</h4>
         <TrackDisplayWithGridAndList data={recentTracks} limit={20}/>
       </Container>
 
       <Container>
-        <Row style={{marginBottom: "10rem"}}>
-          <Col sm={12} md={4}>
+        <Row style={{marginBottom: "5rem"}}>
+          <Col sm={12} md={4} style={{marginBottom: "1rem"}}>
             <h4>All Time Favorites</h4>
             <TrackDisplayGrid data={topLongTracks} limit={16}/>
           </Col>
-          <Col sm={12} md={4}>
+          <Col sm={12} md={4} style={{marginBottom: "1rem"}}>
             <h4>Past Year Favorites</h4>
             <TrackDisplayGrid data={topMedTracks} limit={16}/>
           </Col>
-          <Col sm={12} md={4}>
+          <Col sm={12} md={4} style={{marginBottom: "1rem"}}>
             <h4>Past Month Favorites</h4>
             <TrackDisplayGrid data={topShortTracks} limit={16}/>
           </Col>

@@ -140,7 +140,7 @@ const Player = () => {
                 {getCurrentSongAlbum()}
               </span>
             </div>
-            <div style={{position: "absolute", right: -3, top: -3}}>
+            <div style={{position: "absolute", right: 0, top: -3}}>
               <SpotifyLogoGreen/>
             </div>
             {/*{song != null &&*/}
