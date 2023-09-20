@@ -119,8 +119,8 @@ export default function UserSettings() {
             </Form>
             <hr/>
             <h2>Actions</h2>
-            <Button className="me-2" variant="dark" onClick={() => updateMyMagazine()}>{updateButtonText}</Button>
-            <Button className="me-2" variant="dark" onClick={() => refreshUserData()}>{refreshButtonText}</Button>
+            <Button className="me-2" variant="success" onClick={() => updateMyMagazine()}>{updateButtonText}</Button>
+            <Button className="me-2" variant="success" onClick={() => refreshUserData()}>{refreshButtonText}</Button>
           </Col>
         </Row>
       </Container>

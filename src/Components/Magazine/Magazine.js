@@ -1,26 +1,16 @@
 import {Carousel} from "react-bootstrap";
 import he from 'he';
+import styles from './magazine.module.scss';
+import React from "react";
 
 function Magazine({magazineData}) {
-
   return (
-    <Carousel variant="dark" data-bs-theme={"dark"}>
-      {
-        magazineData.filter((i) => i != "").map(line => {
-          return (
-            <Carousel.Item text={"test"} style={{height: "300px"}}>
-              {
-                <Carousel.Caption>
-                  <p dangerouslySetInnerHTML={{__html: he.decode(line)}}></p>
-                </Carousel.Caption>
-              }
-            </Carousel.Item>
-          )
-        })
-      }
-    </Carousel>
-  )
-
+    <div className={styles.magazineContainer}>
+      {magazineData.filter((i) => i != "").map(line =>
+        <p dangerouslySetInnerHTML={{__html: he.decode(line)}}></p>
+      )}
+    </div>
+  );
 }
 
 export default Magazine;

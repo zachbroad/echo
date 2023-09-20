@@ -8,6 +8,7 @@ import {useLocation} from "react-router";
 import {Link} from "react-router-dom";
 import UserDashboardLoadingPage from "../../Pages/UserDashboardLoadingPage";
 import Layout from "../Layout/Layout";
+import Magazine from "../Magazine/Magazine";
 
 
 const UserDashboardView = ({data}) => {
@@ -44,7 +45,7 @@ const UserDashboardView = ({data}) => {
         <img alt={`${profile.display_name} on Echo`}
              height={112} width={112} className="d-inline rounded-circle mb-2" src={profile.images[1].url}/>
         <div className="d-flex flex-column">
-          <h5 className="p-0 m-0 mr-auto align-content-center">
+          <h5 className="p-0 m-0 mr-auto align-content-center" style={{fontWeight: "bold"}}>
             @{profile.display_name}
             {/*<span className="badge bg-dark rounded-pill">{settings.public ? "PUBLIC" : "PRIVATE"}</span>*/}
           </h5>
@@ -94,32 +95,38 @@ const UserDashboardView = ({data}) => {
         <Row style={{marginBottom: "1rem"}}>
           <Col sm="12" md={"12"}>
             <UserDashboardInfoSection profile={profile}/>
-            {/*<Magazine magazineData={magazine.trim().split(/\\n|\\n\\n|\n/)}/>*/}
+            <hr style={{borderStyle: "dashed", borderColor: "white", width: "33%", margin: "2rem auto"}}/>
+            <div style={{maxWidth: "590px", margin: "0 auto"}}>
+              <h3 className={"fw-bold"}>{profile.display_name}'s Story</h3>
+              <Magazine magazineData={magazine.trim().split(/\\n|\\n\\n|\n/)}/>
+            </div>
           </Col>
-          <Col sm="12" md={"4"}>
-            {/*<TopArtistsDisplay className={"mb-4"} artists={topArtistsMed}/>*/}
-            {/*<TopGenreHandler artists={topArtistsLong}/>*/}
-          </Col>
+          {/*<Col sm="12" md={"4"}>*/}
+          {/*  /!*<TopArtistsDisplay className={"mb-4"} artists={topArtistsMed}/>*!/*/}
+          {/*  /!*<TopGenreHandler artists={topArtistsLong}/>*!/*/}
+          {/*</Col>*/}
         </Row>
       </Container>
 
+      <hr style={{borderStyle: "dashed", borderColor: "white", width: "67"}}/>
+
       <Container style={{marginBottom: "2rem"}}>
-        <h4 className="py-2">Recently listening to...</h4>
+        <h4 className="py-2 fw-bold">Recently listening to...</h4>
         <TrackDisplayWithGridAndList data={recentTracks} limit={20}/>
       </Container>
 
       <Container>
         <Row style={{marginBottom: "5rem"}}>
           <Col sm={12} md={4} style={{marginBottom: "1rem"}}>
-            <h4>All Time Favorites</h4>
+            <h4 className={"fw-bold"}>All Time Favorites</h4>
             <TrackDisplayGrid data={topLongTracks} limit={16}/>
           </Col>
           <Col sm={12} md={4} style={{marginBottom: "1rem"}}>
-            <h4>Past Year Favorites</h4>
+            <h4 className={"fw-bold"}>Past Year Favorites</h4>
             <TrackDisplayGrid data={topMedTracks} limit={16}/>
           </Col>
           <Col sm={12} md={4} style={{marginBottom: "1rem"}}>
-            <h4>Past Month Favorites</h4>
+            <h4 className={"fw-bold"}>Past Month Favorites</h4>
             <TrackDisplayGrid data={topShortTracks} limit={16}/>
           </Col>
         </Row>
