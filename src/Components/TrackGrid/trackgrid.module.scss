@@ -8,10 +8,10 @@
   // justify-content: space-between;
   // grid-gap: 10px; /* Optionally add gap between grid items */
 
-  grid-template-columns: repeat(3, 1fr); // Default 4x4 layout
+  grid-template-columns: repeat(2, 1fr); // Default 4x4 layout
 
   @include media-breakpoint-up(xs) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
 
     /* Default for 3 columns */
     //> div {
@@ -29,7 +29,7 @@
 
 
   @include media-breakpoint-up(sm) {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
   @include media-breakpoint-up(md) {
@@ -41,7 +41,7 @@
   }
 
   @include media-breakpoint-up(xl) {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 

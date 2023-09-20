@@ -17,7 +17,7 @@ function HomePageConnectSpotify() {
         <Button
           onClick={() => redirectAndAuthWithSpotify()}
           className="me-2"
-          variant="dark"
+          variant="success"
         >
           Connect your Spotify
         </Button>
